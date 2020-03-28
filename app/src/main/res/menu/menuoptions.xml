@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/numberSet"
+        android:title="Set Number"
+        android:icon="@drawable/numberset"
+
+    />
+    <item android:id="@+id/meaasageSet"
+        android:title="Set Message"
+        android:icon="@drawable/messageset"
+        />
+
+    <item android:id="@+id/timeSet"
+        android:title="Set Time"
+        android:icon="@drawable/timeset"/>
+
+
+    <item android:id="@+id/patternSet"
+        android:title="Set Pattern"
+        android:icon="@drawable/patternset"
+
+    />
+
+    <item android:title="Lock State">
+
+        <menu>
+            <item
+                android:id="@+id/lockstate"
+                android:title="Unlocked"
+                android:icon="@drawable/lockopen"
+                />
+
+
+        </menu>
+
+    </item>
+    </menu>

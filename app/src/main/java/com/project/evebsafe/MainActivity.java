@@ -1,14 +1,20 @@
 package com.project.evebsafe;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.accounts.AbstractAccountAuthenticator;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.project.evebsafe.Database.SharedPreference;
 import com.project.evebsafe.Dialogboxes.LockPattern;
 
@@ -20,15 +26,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView alreadyregistered;
     String Name,Email,Address,Phone;
     LockPattern lockPattern;
+    DrawerLayout drawerLayout;
+    NavigationView  navigationView;
+    ActionBarDrawerToggle toggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preference=new SharedPreference(this);
-        if (preference.isRegistered()){
+        if (!preference.isRegistered()){
             if(preference.isLocked()){
                 lockPattern=new LockPattern(this);
             }
             setContentView(R.layout.activity_main);
+            drawerLayout=findViewById(R.id.drawerLayout);
+            navigationView=findViewById(R.id.navigationview);
+            toggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.Open,R.string.Close);
+            drawerLayout.addDrawerListener(toggle);
+            toggle.syncState();
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            mynavigationview();
+
+
 
         }else{
             setContentView(R.layout.registrationwindow);
@@ -43,6 +62,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             alreadyregistered.setOnClickListener(this);
         }
        
+    }
+
+    public void mynavigationview(){
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId())
+                {
+                    case R.id.numberSet:
+                        Toast.makeText(MainActivity.this, "number set pressed", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.meaasageSet:
+                        Toast.makeText(MainActivity.this, "message set pressed", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.timeSet:
+                        Toast.makeText(MainActivity.this, "time set pressed", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.patternSet:
+                        Toast.makeText(MainActivity.this, "pattern set pressed", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.lockstate:
+                        if (preference.isLocked()){
+
+                            menuItem.setTitle("Unlocked");
+                            menuItem.setIcon(R.drawable.lockopen);
+                            preference.lockState(false);
+
+                        }else {
+                            menuItem.setTitle("Locked");
+                            menuItem.setIcon(R.drawable.lockclose);
+                            preference.lockState(true);
+
+
+                        }
+                        break;
+
+                }
+                return true;
+            }
+        }) ;
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(toggle.onOptionsItemSelected(item))
+        {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 
     @Override
