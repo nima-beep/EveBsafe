@@ -65,6 +65,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void mynavigationview(){
+        MenuItem item=  navigationView.getMenu().findItem(R.id.lockstate);
+        if(preference.isLocked()){
+
+          item.setTitle("Locked");
+          item.setIcon(R.drawable.lockclose);
+        }
+        else
+        {
+            item.setTitle("Unlocked");
+            item.setIcon(R.drawable.lockopen);
+
+        }
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
