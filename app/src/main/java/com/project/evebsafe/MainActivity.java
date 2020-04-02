@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.accounts.AbstractAccountAuthenticator;
 import android.os.Bundle;
@@ -17,9 +20,13 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.project.evebsafe.Database.SharedPreference;
 import com.project.evebsafe.Dialogboxes.LockPattern;
+import com.project.evebsafe.Linkers.Backtrack;
+import com.project.evebsafe.Linkers.CancelListener;
+import com.project.evebsafe.menuoptions.PatternConfirm;
+import com.project.evebsafe.menuoptions.PatternSet;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, Backtrack, CancelListener {
+
     SharedPreference preference;
     Button Register;
     EditText EName,Enumber,Eaddress,Eemail;
@@ -29,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     DrawerLayout drawerLayout;
     NavigationView  navigationView;
     ActionBarDrawerToggle toggle;
-
+    FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,17 +58,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }else{
             setContentView(R.layout.registrationwindow);
-            
+
             Register=findViewById(R.id.registerbutton);
             alreadyregistered=findViewById(R.id.alreadyregistered);
-            EName=findViewById(R.id.editname); 
-            Enumber=findViewById(R.id.editnumber); 
-            Eaddress=findViewById(R.id.editaddress); 
+            EName=findViewById(R.id.editname);
+            Enumber=findViewById(R.id.editnumber);
+            Eaddress=findViewById(R.id.editaddress);
             Eemail=findViewById(R.id.editemail);
             Register.setOnClickListener(this);
             alreadyregistered.setOnClickListener(this);
         }
-       
+
     }
 
     public void mynavigationview(){
@@ -93,7 +100,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(MainActivity.this, "time set pressed", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.patternSet:
-                        Toast.makeText(MainActivity.this, "pattern set pressed", Toast.LENGTH_SHORT).show();
+                        patternset();
+                        drawerLayout.closeDrawers();
                         break;
                     case R.id.lockstate:
                         if (preference.isLocked()){
@@ -137,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "Already Registered", Toast.LENGTH_SHORT).show();
                 break;
         }
-        
+
     }
 
     public void register(){
@@ -181,6 +189,47 @@ public void postToServer(String a,String b,String c,String d){
 
 
 }
+public void patternset(){
+     Backtrack  backtrack=this;
+    PatternSet patternSet=new PatternSet(this,backtrack);
+    fragmentManager=getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+    fragmentTransaction.replace(R.id.rootLayout,patternSet);
+    fragmentTransaction.addToBackStack("patternSet");
+    fragmentTransaction.commit();
 
 
+}
+public void patternconfirm(String samestring){
+        CancelListener cancelListener=this;
+    PatternConfirm patternConfirm=new PatternConfirm(this,samestring,cancelListener);
+    fragmentManager=getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+    fragmentTransaction.replace(R.id.rootLayout,patternConfirm);
+    fragmentTransaction.addToBackStack("patternConfirm");
+    fragmentTransaction.commit();
+
+
+}
+
+    @Override
+    public void onNext(String samestring)
+    {
+        patternconfirm(samestring);
+    }
+
+    @Override
+    public void onCancel() {
+        getSupportFragmentManager().popBackStack();
+    }
+
+
+    @Override
+    public void onComplete() {
+        for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); i++) {
+            getSupportFragmentManager().popBackStack();
+        }
+
+
+    }
 }

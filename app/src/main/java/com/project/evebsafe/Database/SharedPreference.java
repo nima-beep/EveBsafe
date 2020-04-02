@@ -108,4 +108,7 @@ public class SharedPreference {
 
 
     }
+
+    public void savePattern() {
+    }
 }

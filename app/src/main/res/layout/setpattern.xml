@@ -7,90 +7,92 @@
     android:background="@drawable/patternbackground">
 
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="395dp"
+        android:id="@+id/textView89"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
 
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="2dp"
         android:gravity="center"
         android:text="Set Pattern"
         android:textColor="@color/cheery_red"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/confirmpatternlockview"
+        app:layout_constraintBottom_toTopOf="@+id/setpatternlockview"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <com.pallob.lib.PatternLockView
-        android:id="@+id/confirmpatternlockview"
+        android:id="@+id/setpatternlockview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
 
+        android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp"
         app:highlightedColor="@android:color/holo_blue_dark"
-        app:layout_constraintBottom_toTopOf="@+id/confirmpatternnbutton"
+        app:layout_constraintBottom_toTopOf="@+id/setpatternnnext"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView89"
         app:lineColor="@android:color/darker_gray"
         app:lineWidth="10dp"
         app:lockSize="3"
         app:normalColor="@color/purple" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageView4"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView89"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/looo" />
 
     <Button
-        android:background="@drawable/registrationbuttonback"
-        android:id="@+id/confirmpatternnbutton"
+        android:id="@+id/setpatternnnext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/registrationbuttonback"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/confirmpatteerncancel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmpatternlockview" />
+        app:layout_constraintEnd_toStartOf="@+id/setpatteerncancel"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:background=""
-        android:id="@+id/confirmpatteerncancel"
+        android:id="@+id/setpatteerncancel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/registrationbuttonback"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/confirmpatternnbutton"
-        app:layout_constraintTop_toBottomOf="@+id/confirmpatternlockview" />
+        app:layout_constraintStart_toEndOf="@+id/setpatternnnext" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
