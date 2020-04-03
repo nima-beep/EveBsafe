@@ -24,6 +24,7 @@ import com.project.evebsafe.Linkers.Backtrack;
 import com.project.evebsafe.Linkers.CancelListener;
 import com.project.evebsafe.menuoptions.PatternConfirm;
 import com.project.evebsafe.menuoptions.PatternSet;
+import com.project.evebsafe.menuoptions.Timeset;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Backtrack, CancelListener {
 
@@ -97,7 +98,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(MainActivity.this, "message set pressed", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.timeSet:
-                        Toast.makeText(MainActivity.this, "time set pressed", Toast.LENGTH_SHORT).show();
+                    timeset();
+                        drawerLayout.closeDrawers();
                         break;
                     case R.id.patternSet:
                         patternset();
@@ -210,6 +212,17 @@ public void patternconfirm(String samestring){
     fragmentTransaction.commit();
 
 
+
+}
+public void timeset(){
+    Backtrack  backtrack=this;
+    Timeset timeset=new Timeset(this,backtrack);
+    fragmentManager=getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+    fragmentTransaction.replace(R.id.rootLayout,timeset);
+    fragmentTransaction.addToBackStack("timeset");
+    fragmentTransaction.commit();
+
 }
 
     @Override
@@ -232,4 +245,5 @@ public void patternconfirm(String samestring){
 
 
     }
+
 }

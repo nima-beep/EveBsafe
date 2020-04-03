@@ -11,5 +11,8 @@ public class Constants {
     public static final String RUNNING_STATE="running_evebsafe";
     public static final String PATTERN="pattern_evebsafe";
     public static final String REGISTER="register_evebsafe";
+    public static final String HOUR="hour_evebsafe";
+    public static final String MINUTE="minute_evebsafe";
+    public static final String SECOND="second_evebsafe";
 
 }

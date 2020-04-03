@@ -108,7 +108,32 @@ public class SharedPreference {
 
 
     }
+    public int getHour(){
+        preferences = context.getSharedPreferences(Constants.APPS_PREFERENCE, Context.MODE_PRIVATE);
+        return preferences.getInt(Constants.HOUR,0);
 
-    public void savePattern() {
     }
+    public int getMinute(){
+        preferences = context.getSharedPreferences(Constants.APPS_PREFERENCE, Context.MODE_PRIVATE);
+        return preferences.getInt(Constants.MINUTE,0);
+
+    }
+    public int getSecond(){
+        preferences = context.getSharedPreferences(Constants.APPS_PREFERENCE, Context.MODE_PRIVATE);
+        return preferences.getInt(Constants.SECOND,0);
+
+    }
+   public void saveTime(int H,int M,int S){
+       preferences = context.getSharedPreferences(Constants.APPS_PREFERENCE, Context.MODE_PRIVATE);
+       editor = preferences.edit();
+       editor.putInt(Constants.HOUR,H );
+       editor.putInt(Constants.MINUTE,M );
+       editor.putInt(Constants.SECOND,S );
+
+       editor.commit();
+
+
+
+   }
+
 }
