@@ -24,6 +24,8 @@ import com.project.evebsafe.Linkers.Backtrack;
 import com.project.evebsafe.Linkers.CancelListener;
 import com.project.evebsafe.menuoptions.PatternConfirm;
 import com.project.evebsafe.menuoptions.PatternSet;
+import com.project.evebsafe.menuoptions.SetMessage;
+import com.project.evebsafe.menuoptions.SetNumber;
 import com.project.evebsafe.menuoptions.Timeset;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Backtrack, CancelListener {
@@ -92,10 +94,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switch (menuItem.getItemId())
                 {
                     case R.id.numberSet:
-                        Toast.makeText(MainActivity.this, "number set pressed", Toast.LENGTH_SHORT).show();
+                       setNumber();
+                       drawerLayout.closeDrawers();
                         break;
                     case R.id.meaasageSet:
-                        Toast.makeText(MainActivity.this, "message set pressed", Toast.LENGTH_SHORT).show();
+                       setMessage();
+                       drawerLayout.closeDrawers();
                         break;
                     case R.id.timeSet:
                     timeset();
@@ -242,6 +246,29 @@ public void timeset(){
         for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); i++) {
             getSupportFragmentManager().popBackStack();
         }
+
+
+    }
+    public void setMessage(){
+
+     SetMessage setMessage=new SetMessage(this);
+        fragmentManager=getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.rootLayout,setMessage);
+        fragmentTransaction.addToBackStack("SetMessage");
+        fragmentTransaction.commit();
+
+    }
+
+    public  void setNumber(){
+        Backtrack backtrack=this;
+
+        SetNumber setNumber=new SetNumber(this,backtrack);
+        fragmentManager=getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.rootLayout,setNumber);
+        fragmentTransaction.addToBackStack("SetNumber");
+        fragmentTransaction.commit();
 
 
     }

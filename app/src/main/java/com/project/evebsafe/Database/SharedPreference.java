@@ -135,5 +135,20 @@ public class SharedPreference {
 
 
    }
+   public void saveMessage(String msg){
+       preferences = context.getSharedPreferences(Constants.APPS_PREFERENCE, Context.MODE_PRIVATE);
+       editor = preferences.edit();
+       editor.putString(Constants.MESSAGE,msg );
+
+
+       editor.commit();
+
+   }
+   public String getMessage(){
+       preferences = context.getSharedPreferences(Constants.APPS_PREFERENCE, Context.MODE_PRIVATE);
+       return preferences.getString(Constants.MESSAGE,"");
+
+
+   }
 
 }

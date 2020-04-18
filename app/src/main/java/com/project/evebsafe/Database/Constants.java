@@ -14,5 +14,7 @@ public class Constants {
     public static final String HOUR="hour_evebsafe";
     public static final String MINUTE="minute_evebsafe";
     public static final String SECOND="second_evebsafe";
+    public static final String MESSAGE="message_evebsafe";
+
 
 }
