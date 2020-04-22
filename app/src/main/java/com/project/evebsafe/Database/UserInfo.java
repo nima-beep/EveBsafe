@@ -1,0 +1,85 @@
+package com.project.evebsafe.Database;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+
+public class UserInfo extends SQLiteOpenHelper {
+    public static final String databasename="Mydatabase.db";
+    public static final String tablename="Mytable";
+    public static final String COL_1="Name";
+    public static final String COL_2="Phone_Number";
+    public static final String COL_3="Address";
+    public static final String COL_4="Picture";
+    public static final String COL_5="Occupation";
+    public static final String COL_6="Gender";
+
+
+
+
+    public UserInfo(@Nullable Context context) {
+        super(context, databasename, null, 1);
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE "+tablename+" (Name TEXT,Phone_Number TEXT,Address TEXT,Picture TEXT,Occupation TEXT,Gender TEXT) ");
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS "+tablename);
+
+    }
+    public boolean insert(String name,String number,String address,String picture,String occupation,String gender)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(COL_1,name);
+        contentValues.put(COL_2,number);
+        contentValues.put(COL_3,address);
+        contentValues.put(COL_4,picture);
+        contentValues.put(COL_5,occupation);
+        contentValues.put(COL_6,gender);
+        long result=db.insert(tablename,null,contentValues);
+        if(result==-1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    }
+    public ArrayList<String> getinfo(String number)
+    {
+
+        SQLiteDatabase db=this.getWritableDatabase();
+        ArrayList<String> arrayList=new ArrayList<>();
+        String SQL ="SELECT FROM "+tablename+" WHERE Phone_Number='"+number+"'";
+        Cursor cursor=db.rawQuery(SQL,null);
+        while (cursor.moveToNext())
+        {
+          arrayList.add(cursor.getString(0));
+            arrayList.add(cursor.getString(1));
+            arrayList.add(cursor.getString(2));
+            arrayList.add(cursor.getString(3));
+            arrayList.add(cursor.getString(4));
+            arrayList.add(cursor.getString(5));
+
+
+        }
+
+
+        return arrayList;
+    }
+}
