@@ -13,7 +13,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,10 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SharedPreference preference;
     Button Register;
     EditText EName,Enumber,Eaddress,Eemail;
-    TextView alreadyregistered;
+    TextView alreadyregistered,textView;
     String Name,Email,Address,Phone;
     LockPattern lockPattern;
     DrawerLayout drawerLayout;
+    Switch sw;
     NavigationView  navigationView;
     ActionBarDrawerToggle toggle;
     FragmentManager fragmentManager;
@@ -76,6 +79,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void mynavigationview(){
         MenuItem item=  navigationView.getMenu().findItem(R.id.lockstate);
+        View view=navigationView.getHeaderView(0);
+        textView =view.findViewById(R.id.usernameid);
+        sw=view.findViewById(R.id.runningStateid);
+        textView.setText(preference.getNames());
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    Toast.makeText(MainActivity.this, "Enabled", Toast.LENGTH_SHORT).show();
+                    sw.setText("Enabled");
+                    preference.saverunningState(true);
+
+                }
+                else
+                {
+
+                    Toast.makeText(MainActivity.this, "Disabled", Toast.LENGTH_SHORT).show();
+                    sw.setText("Disabled");
+                    preference.saverunningState(false);
+                }
+
+            }
+        });
+
+        if(preference.isRunning()){
+
+           sw.setText("Enabled");
+            sw.setChecked(true);
+        }
+        else
+        {
+            sw.setText("Disabled");
+            sw.setChecked(false);
+
+        }
         if(preference.isLocked()){
 
           item.setTitle("Locked");
@@ -87,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             item.setIcon(R.drawable.lockopen);
 
         }
+
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

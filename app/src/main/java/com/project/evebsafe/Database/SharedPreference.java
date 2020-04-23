@@ -23,11 +23,12 @@ public class SharedPreference {
         editor.commit();
 
     }
-    public void runningState(boolean variable)
+    public void saverunningState(boolean variable)
     {
         preferences=context.getSharedPreferences(Constants.APPS_PREFERENCE,Context.MODE_PRIVATE);
         editor=preferences.edit();
         editor.putBoolean(Constants.RUNNING_STATE,variable);
+
         editor.commit();
 
     }
