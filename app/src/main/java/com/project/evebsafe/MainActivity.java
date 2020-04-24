@@ -15,12 +15,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.project.evebsafe.Database.SharedPreference;
+import com.project.evebsafe.Database.UserInfo;
 import com.project.evebsafe.Dialogboxes.LockPattern;
 import com.project.evebsafe.Linkers.Backtrack;
 import com.project.evebsafe.Linkers.CancelListener;
@@ -35,11 +37,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SharedPreference preference;
     Button Register;
     EditText EName,Enumber,Eaddress,Eemail;
-    TextView alreadyregistered,textView;
+    TextView alreadyregistered,textView,showtime,showmsg;
+    ListView listView;
     String Name,Email,Address,Phone;
     LockPattern lockPattern;
     DrawerLayout drawerLayout;
     Switch sw;
+    UserInfo userInfo ;
     NavigationView  navigationView;
     ActionBarDrawerToggle toggle;
     FragmentManager fragmentManager;
@@ -47,11 +51,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preference=new SharedPreference(this);
+        userInfo=new UserInfo(this);
+
         if (!preference.isRegistered()){
             if(preference.isLocked()){
                 lockPattern=new LockPattern(this);
             }
             setContentView(R.layout.activity_main);
+            showtime=findViewById(R.id.timeid);
+            showmsg=findViewById(R.id.msgid);
+            listView=findViewById(R.id.listviewid);
             drawerLayout=findViewById(R.id.drawerLayout);
             navigationView=findViewById(R.id.navigationview);
             toggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.Open,R.string.Close);

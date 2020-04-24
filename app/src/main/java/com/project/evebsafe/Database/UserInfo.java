@@ -60,7 +60,7 @@ public class UserInfo extends SQLiteOpenHelper {
         }
 
     }
-    public ArrayList<String> getinfo(String number)
+    public ArrayList<String> getIndividualInfo(String number)
     {
 
         SQLiteDatabase db=this.getWritableDatabase();
@@ -81,5 +81,28 @@ public class UserInfo extends SQLiteOpenHelper {
 
 
         return arrayList;
+    }
+    public ArrayList<ArrayList<String>>allInfo(){
+        SQLiteDatabase db=this.getWritableDatabase();
+        String SQL ="SELECT Name,Phone_Number,Picture FROM "+tablename;
+        Cursor cursor=db.rawQuery(SQL,null);
+        ArrayList<String>Name,Number,Profilepic;
+        ArrayList<ArrayList<String>>object;
+        Name= new ArrayList<>();
+        Number=new ArrayList<>();
+        Profilepic=new ArrayList<>();
+        object=new ArrayList<>();
+        while (cursor.moveToNext()) {
+            Name.add(cursor.getString(0));
+            Number.add(cursor.getString(1));
+            Profilepic.add(cursor.getString(2));
+        }
+        object.add(Name);
+        object.add(Number);
+        object.add(Profilepic);
+
+
+
+     return object;
     }
 }
