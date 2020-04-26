@@ -21,29 +21,35 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.project.evebsafe.Adapters.CustomListViewAdapters;
 import com.project.evebsafe.Database.SharedPreference;
 import com.project.evebsafe.Database.UserInfo;
 import com.project.evebsafe.Dialogboxes.LockPattern;
 import com.project.evebsafe.Linkers.Backtrack;
 import com.project.evebsafe.Linkers.CancelListener;
+import com.project.evebsafe.Linkers.DeleteHandeller;
 import com.project.evebsafe.menuoptions.PatternConfirm;
 import com.project.evebsafe.menuoptions.PatternSet;
 import com.project.evebsafe.menuoptions.SetMessage;
 import com.project.evebsafe.menuoptions.SetNumber;
 import com.project.evebsafe.menuoptions.Timeset;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, Backtrack, CancelListener {
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, Backtrack, CancelListener, DeleteHandeller {
 
     SharedPreference preference;
     Button Register;
     EditText EName,Enumber,Eaddress,Eemail;
-    TextView alreadyregistered,textView,showtime,showmsg;
+    TextView alreadyregistered,textView;
     ListView listView;
     String Name,Email,Address,Phone;
     LockPattern lockPattern;
     DrawerLayout drawerLayout;
     Switch sw;
     UserInfo userInfo ;
+    DeleteHandeller deleteHandeller;
+    CustomListViewAdapters customListViewAdapters;
     NavigationView  navigationView;
     ActionBarDrawerToggle toggle;
     FragmentManager fragmentManager;
@@ -58,8 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 lockPattern=new LockPattern(this);
             }
             setContentView(R.layout.activity_main);
-            showtime=findViewById(R.id.timeid);
-            showmsg=findViewById(R.id.msgid);
+            deleteHandeller=this;
+
             listView=findViewById(R.id.listviewid);
             drawerLayout=findViewById(R.id.drawerLayout);
             navigationView=findViewById(R.id.navigationview);
@@ -67,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             drawerLayout.addDrawerListener(toggle);
             toggle.syncState();
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            showList();
             mynavigationview();
 
 
@@ -287,6 +294,7 @@ public void timeset(){
     @Override
     public void onCancel() {
         getSupportFragmentManager().popBackStack();
+        showList();
     }
 
 
@@ -321,5 +329,23 @@ public void timeset(){
 
 
     }
+    public void showList(){
+        ArrayList<ArrayList<String>>data=new ArrayList<>();
+        data=userInfo.allInfo();
 
+        customListViewAdapters=new CustomListViewAdapters(this,data.get(0),data.get(1),data.get(2),deleteHandeller,userInfo);
+        listView.setAdapter(customListViewAdapters);
+
+
+
+
+    }
+
+
+    @Override
+    public void delete() {
+        showList();
+
+    }
 }
+

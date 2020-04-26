@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.project.evebsafe.Database.UserInfo;
+import com.project.evebsafe.Linkers.DeleteHandeller;
 import com.project.evebsafe.R;
 
 import java.util.ArrayList;
@@ -18,26 +20,36 @@ public class CustomListViewAdapters extends ArrayAdapter<String> {
     int array[]={R.drawable.frnd1,R.drawable.pro1,R.drawable.pro2,R.drawable.frnd2};
     ArrayList<String>Name,Number,Profilepic;
     Context context;
+    DeleteHandeller deleteHandeller;
     View view;
+    UserInfo userInfo;
     TextView profilepic,name,number,delete;
-    public CustomListViewAdapters( Context context,ArrayList<String>Name,ArrayList<String>Number,ArrayList<String>Profilepic) {
+    public CustomListViewAdapters(Context context, ArrayList<String> Name, ArrayList<String> Number, ArrayList<String> Profilepic, DeleteHandeller deleteHandeller, UserInfo userInfo) {
         super(context, R.layout.singleview,Name);
         this.context=context;
         this.Name=Name;
         this.Number=Number;
         this.Profilepic=Profilepic;
+        this.deleteHandeller=deleteHandeller;
+        this.userInfo=userInfo;
 
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         view= LayoutInflater.from(context).inflate(R.layout.singleview,parent,false);
         profilepic=view.findViewById(R.id.profilepic);
         name=view.findViewById(R.id.nameoffriend);
         number=view.findViewById(R.id.phonenumberfriend);
         delete=view.findViewById(R.id.deleteId);
-
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userInfo.DeleteSingleUser(Number.get(position));
+                deleteHandeller.delete();
+            }
+        });
         name.setText(Name.get(position));
         number.setText(Number.get(position));
         switch (Profilepic.get(position)){

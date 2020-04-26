@@ -105,4 +105,13 @@ public class UserInfo extends SQLiteOpenHelper {
 
      return object;
     }
+
+    public void DeleteSingleUser(String number)
+    {
+
+        SQLiteDatabase db=this.getWritableDatabase();
+        String SQL ="DELETE FROM "+tablename+" WHERE Phone_Number='"+number+"'";
+        db.execSQL(SQL);
+
+    }
 }

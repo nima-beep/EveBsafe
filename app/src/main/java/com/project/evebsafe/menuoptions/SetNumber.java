@@ -196,6 +196,7 @@ public class SetNumber extends Fragment implements View.OnClickListener {
                                if(userInfo.insert(S1,S2,S3,dis,oc,ge))
                                {
                                    Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
+                                   backtrack.onCancel();
 
                                }
                                else
