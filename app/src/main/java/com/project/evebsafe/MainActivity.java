@@ -20,6 +20,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.project.evebsafe.Adapters.CustomListViewAdapters;
 import com.project.evebsafe.Database.SharedPreference;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     NavigationView  navigationView;
     ActionBarDrawerToggle toggle;
     FragmentManager fragmentManager;
+    FloatingActionButton floatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setContentView(R.layout.activity_main);
             deleteHandeller=this;
 
+            floatingActionButton=findViewById(R.id.fab);
+
             listView=findViewById(R.id.listviewid);
             drawerLayout=findViewById(R.id.drawerLayout);
             navigationView=findViewById(R.id.navigationview);
@@ -75,6 +79,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             showList();
             mynavigationview();
+            floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this, "floating button clicked", Toast.LENGTH_SHORT).show();
+
+                }
+            });
 
 
 
