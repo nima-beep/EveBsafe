@@ -26,6 +26,7 @@ import com.project.evebsafe.Adapters.CustomListViewAdapters;
 import com.project.evebsafe.Database.SharedPreference;
 import com.project.evebsafe.Database.UserInfo;
 import com.project.evebsafe.Dialogboxes.LockPattern;
+import com.project.evebsafe.Dialogboxes.ShowMessage;
 import com.project.evebsafe.Linkers.Backtrack;
 import com.project.evebsafe.Linkers.CancelListener;
 import com.project.evebsafe.Linkers.DeleteHandeller;
@@ -82,7 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             floatingActionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, "floating button clicked", Toast.LENGTH_SHORT).show();
+
+                    ShowMessage showMessage=new ShowMessage(MainActivity.this,preference);
 
                 }
             });
