@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
-    android:layout_height="500dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/lyoutlin"
@@ -35,11 +35,6 @@
             android:gravity="center"
             android:scrollbars="vertical"
             android:scrollbarSize="10dp"
-            android:text="Each of the past three centuries was dominated by a single new technology.
-The 18th century was the era of the great mechanical systems accompanying the
-Industrial Revolution. The 19th century was the age of the steam engine Each of the past three centuries was dominated by a single new technology.
-The 18th century was the era of the great mechanical systems accompanying the
-Industrial Revolution. The 19th century was the age of the steam engine"
             android:textColor="@android:color/black" />
 
         <TextView

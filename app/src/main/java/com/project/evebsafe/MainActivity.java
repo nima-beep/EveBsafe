@@ -186,9 +186,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             preference.lockState(false);
 
                         }else {
-                            menuItem.setTitle("Locked");
-                            menuItem.setIcon(R.drawable.lockclose);
-                            preference.lockState(true);
+
+                            if(preference.getPattern().equals(""))
+                            {
+                                drawerLayout.closeDrawers();
+                                patternset();
+
+                            }
+                            else
+                            {
+                                menuItem.setTitle("Locked");
+                                menuItem.setIcon(R.drawable.lockclose);
+                                preference.lockState(true);
+
+                            }
+
 
 
                         }

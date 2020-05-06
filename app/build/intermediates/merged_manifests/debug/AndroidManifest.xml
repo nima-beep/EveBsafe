@@ -21,7 +21,9 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.project.evebsafe.MainActivity" >
+        <activity
+            android:name="com.project.evebsafe.MainActivity"
+            android:windowSoftInputMode="adjustPan" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
