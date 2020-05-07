@@ -28,6 +28,9 @@ public class ShakeEventDetector implements SensorEventListener {
         this.listener=listener;
 
     }
+
+
+
     public interface OnShakeListener{
         void OnShake(int count);
 

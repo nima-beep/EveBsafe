@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.accounts.AbstractAccountAuthenticator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,8 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.project.evebsafe.Adapters.CustomListViewAdapters;
+import com.project.evebsafe.BackgroundWorks.EveBappService;
+import com.project.evebsafe.BackgroundWorks.ShakeEventDetector;
 import com.project.evebsafe.Database.SharedPreference;
 import com.project.evebsafe.Database.UserInfo;
 import com.project.evebsafe.Dialogboxes.LockPattern;
@@ -56,12 +59,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ActionBarDrawerToggle toggle;
     FragmentManager fragmentManager;
     FloatingActionButton floatingActionButton;
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preference=new SharedPreference(this);
         userInfo=new UserInfo(this);
-
+        intent=new Intent(this, EveBappService.class);
         if (!preference.isRegistered()){
             if(preference.isLocked()){
                 lockPattern=new LockPattern(this);
@@ -86,6 +90,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     ShowMessage showMessage=new ShowMessage(MainActivity.this,preference);
 
+                }
+            });
+            ShakeEventDetector shakeEventDetector=new ShakeEventDetector(this);
+            shakeEventDetector.setOnShakeEventListener(new ShakeEventDetector.OnShakeListener() {
+                @Override
+                public void OnShake(int count) {
+                    Toast.makeText(MainActivity.this, String.valueOf(count), Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -120,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(MainActivity.this, "Enabled", Toast.LENGTH_SHORT).show();
                     sw.setText("Enabled");
                     preference.saverunningState(true);
+                    startService(intent);
 
                 }
                 else
@@ -128,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(MainActivity.this, "Disabled", Toast.LENGTH_SHORT).show();
                     sw.setText("Disabled");
                     preference.saverunningState(false);
+                    stopService(intent);
                 }
 
             }
@@ -137,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
            sw.setText("Enabled");
             sw.setChecked(true);
+            startService(intent);
         }
         else
         {

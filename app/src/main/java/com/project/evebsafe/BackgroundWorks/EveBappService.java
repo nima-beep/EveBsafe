@@ -8,7 +8,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.project.evebsafe.Database.SharedPreference;
+
 public class EveBappService extends Service {
+    SharedPreference preference;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -18,12 +21,22 @@ public class EveBappService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        preference=new SharedPreference(this);
         final Handler handler=new Handler();//For synchronus task this object is needed
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+
                handler.postDelayed(this,10000);
-                Toast.makeText(EveBappService.this, "Apps Running", Toast.LENGTH_SHORT).show();
+               if(preference.isRunning()){
+                   Toast.makeText(EveBappService.this, "Apps Running", Toast.LENGTH_SHORT).show();
+               }
+                else
+               {
+                   handler.removeCallbacks(this);
+                   Toast.makeText(EveBappService.this, "Apps  is not Running", Toast.LENGTH_SHORT).show();
+
+               }
             }
         }, 10000);
     }
