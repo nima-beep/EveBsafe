@@ -1,63 +1,70 @@
 package com.project.evebsafe.BackgroundWorks;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 
 public class GPS_TRACKER implements LocationListener {
     Context context;
-    boolean isGPS_ENABLED=false;
-    boolean is_NETWORK_ENABLED=false;
-    boolean canGetLocation=false;
     Location location;
     double latitude;
+
+
     double longtitude;
     LocationManager locationManager;
-    private static final long mimimum_distance_update=10;
-    private static final long mimimum_time_update=60000;
+    private static final long mimimum_distance_update = 10;
+    private static final long mimimum_time_update = 10000;
 
     public GPS_TRACKER(Context context) {
-        this.context=context;
-        getLocation();
-    }
-    @SuppressLint("MissingPermission")
-    public Location getLocation()
-    {
-        try {
-
-            locationManager= (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-            isGPS_ENABLED=locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-            is_NETWORK_ENABLED=locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-            if(isGPS_ENABLED && is_NETWORK_ENABLED)
-            {
-                canGetLocation=true;
-                if(is_NETWORK_ENABLED)
-                {
-                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,mimimum_time_update,mimimum_distance_update,this);
-                    location=locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                }
-                if (isGPS_ENABLED)
-                {
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,mimimum_time_update,mimimum_distance_update,this);
-                    location=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                }
-
-
-            }
-            else
-            {
-
-            }
-
-        }catch (Exception e)
-        {
+        this.context = context;
+        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        if (isGPSEnabled()) {
+            setLocation(LocationManager.GPS_PROVIDER);
 
         }
+        if (isNetworkEnabled()) {
+            setLocation(LocationManager.NETWORK_PROVIDER);
+        }
+    }
 
-        return location;
+    public void setLocation(String provider) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && context.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                //runtime permission check
+                locationManager.requestLocationUpdates(provider, mimimum_time_update, mimimum_distance_update, this);
+                location=locationManager.getLastKnownLocation(provider);
+            }
+        }else {
+            locationManager.requestLocationUpdates(provider, mimimum_time_update, mimimum_distance_update, this);
+            location=locationManager.getLastKnownLocation(provider);
+        }
+        if(locationManager!=null && location!=null){
+            setLatitude(location.getLatitude());
+            setLongtitude(location.getLongitude());
+        }
+
+    }
+
+    public boolean isNetworkEnabled(){
+        return locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+    }
+    public boolean isGPSEnabled(){
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+    }
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongtitude(double longtitude) {
+        this.longtitude = longtitude;
     }
 
 

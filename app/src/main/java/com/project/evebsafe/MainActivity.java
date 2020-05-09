@@ -3,13 +3,17 @@ package com.project.evebsafe;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.accounts.AbstractAccountAuthenticator;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,6 +44,9 @@ import com.project.evebsafe.menuoptions.SetNumber;
 import com.project.evebsafe.menuoptions.Timeset;
 
 import java.util.ArrayList;
+import static android.Manifest.permission.ACCESS_NETWORK_STATE;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Backtrack, CancelListener, DeleteHandeller {
 
@@ -126,21 +133,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Runtime permission check for marshmallow and upper version
                 if(isChecked)
                 {
-                    Toast.makeText(MainActivity.this, "Enabled", Toast.LENGTH_SHORT).show();
-                    sw.setText("Enabled");
-                    preference.saverunningState(true);
-                    startService(intent);
+                    if(hasCoarseLocation()&&hasFineLocation())
+                    {
+                       Enable();
+                    }
+                    else if(!hasCoarseLocation() &&hasFineLocation())
+                    {
+                        ActivityCompat.requestPermissions(MainActivity.this,new String[]{ACCESS_COARSE_LOCATION},1);
+                    }
+                    else if(hasCoarseLocation() &&!hasFineLocation())
+                    {
+                        ActivityCompat.requestPermissions(MainActivity.this,new String[]{ACCESS_FINE_LOCATION},2);
+                    }
+
+                    else
+                    {
+                        ActivityCompat.requestPermissions(MainActivity.this,new String[]{ACCESS_COARSE_LOCATION,ACCESS_FINE_LOCATION},3);
+                    }
 
                 }
                 else
                 {
-
-                    Toast.makeText(MainActivity.this, "Disabled", Toast.LENGTH_SHORT).show();
-                    sw.setText("Disabled");
-                    preference.saverunningState(false);
-                    stopService(intent);
+                    Disable();
                 }
 
             }
@@ -385,6 +402,81 @@ public void timeset(){
     public void delete() {
         showList();
 
+    }
+    public void permissionChecker()
+    {
+
+    }
+    public  boolean hasFineLocation()
+    {
+       return  (ContextCompat.checkSelfPermission(getApplicationContext(),ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED);
+    }
+    public  boolean hasCoarseLocation()
+    {
+        return  (ContextCompat.checkSelfPermission(getApplicationContext(),ACCESS_COARSE_LOCATION)== PackageManager.PERMISSION_GRANTED);
+    }
+    public  boolean hasNetworkState()
+    {
+        return  (ContextCompat.checkSelfPermission(getApplicationContext(),ACCESS_NETWORK_STATE)== PackageManager.PERMISSION_GRANTED);
+    }
+    public  void Enable()
+    {
+
+        Toast.makeText(MainActivity.this, "Enabled", Toast.LENGTH_SHORT).show();
+        sw.setText("Enabled");
+        preference.saverunningState(true);
+        startService(intent);
+    }
+    public void Disable()
+    {
+
+
+        Toast.makeText(MainActivity.this, "Disabled", Toast.LENGTH_SHORT).show();
+        sw.setText("Disabled");
+        sw.setChecked(false);
+        preference.saverunningState(false);
+        stopService(intent);
+    }
+
+//Result of user interaction
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 1:
+                if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                    Enable();
+                }
+                else
+                {
+                    Disable();
+                }
+                break;
+            case 2:
+                if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
+
+                    Enable();
+
+                }
+                else
+                {
+                    Disable();
+                }
+                break;
+
+            case 3:
+                if(grantResults[0]==PackageManager.PERMISSION_GRANTED &&grantResults[1]==PackageManager.PERMISSION_GRANTED)
+                {
+                    Enable();
+                }
+                else
+                {
+                    Disable();
+                }
+                break;
+
+
+
+        }
     }
 }
 
