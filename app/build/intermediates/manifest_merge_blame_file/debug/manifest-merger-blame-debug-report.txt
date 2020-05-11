@@ -19,70 +19,76 @@
 13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 13-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:6:5-78
 13-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:6:22-76
-14    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-14-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:7:1-76
-14-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:7:18-74
-15    <uses-permission android:name="android.permission.INTERNET" />
-15-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:8:1-62
-15-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:8:18-60
-16
-17    <application
-17-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:9:5-38:19
-18        android:allowBackup="true"
-18-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:10:9-35
-19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.1.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\e9dab9c67c1ee3668e0bbf86c6d8cbd8\core-1.1.0\AndroidManifest.xml:24:18-86
-20        android:debuggable="true"
-21        android:icon="@mipmap/ic_launcher"
-21-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:11:9-43
-22        android:label="@string/app_name"
-22-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:12:9-41
-23        android:roundIcon="@mipmap/ic_launcher_round"
-23-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:13:9-54
-24        android:supportsRtl="true"
-24-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:14:9-35
-25        android:testOnly="true"
-26        android:theme="@style/AppTheme" >
-26-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:15:9-40
-27        <activity
-27-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:16:9-24:20
-28            android:name="com.project.evebsafe.MainActivity"
-28-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:16:19-47
-29            android:windowSoftInputMode="adjustPan" >
-29-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:17:13-52
-30            <intent-filter>
-30-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:19:13-23:29
-31                <action android:name="android.intent.action.MAIN" />
-31-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:20:17-69
-31-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:20:25-66
-32
-33                <category android:name="android.intent.category.LAUNCHER" />
-33-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:22:17-77
-33-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:22:27-74
-34            </intent-filter>
-35        </activity>
-36
-37        <service android:name="com.project.evebsafe.BackgroundWorks.EveBappService" />
-37-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:25:9-66
-37-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:25:18-64
+14    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+14-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:7:5-77
+14-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:7:22-75
+15    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+15-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:8:1-76
+15-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:8:18-74
+16    <uses-permission android:name="android.permission.INTERNET" />
+16-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:9:1-62
+16-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:9:18-60
+17    <uses-permission android:name="android.permission.SEND_SMS" />
+17-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:10:5-66
+17-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:10:22-64
+18
+19    <application
+19-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:11:5-40:19
+20        android:allowBackup="true"
+20-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:12:9-35
+21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+21-->[androidx.core:core:1.1.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\e9dab9c67c1ee3668e0bbf86c6d8cbd8\core-1.1.0\AndroidManifest.xml:24:18-86
+22        android:debuggable="true"
+23        android:icon="@mipmap/ic_launcher"
+23-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:13:9-43
+24        android:label="@string/app_name"
+24-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:14:9-41
+25        android:roundIcon="@mipmap/ic_launcher_round"
+25-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:15:9-54
+26        android:supportsRtl="true"
+26-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:16:9-35
+27        android:testOnly="true"
+28        android:theme="@style/AppTheme" >
+28-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:17:9-40
+29        <activity
+29-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:18:9-26:20
+30            android:name="com.project.evebsafe.MainActivity"
+30-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:18:19-47
+31            android:windowSoftInputMode="adjustPan" >
+31-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:19:13-52
+32            <intent-filter>
+32-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:21:13-25:29
+33                <action android:name="android.intent.action.MAIN" />
+33-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:22:17-69
+33-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:22:25-66
+34
+35                <category android:name="android.intent.category.LAUNCHER" />
+35-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:24:17-77
+35-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:24:27-74
+36            </intent-filter>
+37        </activity>
 38
-39        <receiver
-39-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:26:9-37:20
-40            android:name="com.project.evebsafe.BackgroundWorks.RebootHandeller"
-40-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:26:19-66
-41            android:enabled="true" >
-41-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:27:13-35
-42            <intent-filter>
-42-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:31:13-35:29
-43                <action android:name="android.intent.action.BOOT_COMPLETED" />
-43-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:32:17-79
-43-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:32:25-76
-44
-45                <category android:name="android.intent.category.DEFAULT" />
-45-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:34:17-76
-45-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:34:27-73
-46            </intent-filter>
-47        </receiver>
-48    </application>
-49
-50</manifest>
+39        <service android:name="com.project.evebsafe.BackgroundWorks.EveBappService" />
+39-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:27:9-66
+39-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:27:18-64
+40
+41        <receiver
+41-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:28:9-39:20
+42            android:name="com.project.evebsafe.BackgroundWorks.RebootHandeller"
+42-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:28:19-66
+43            android:enabled="true" >
+43-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:29:13-35
+44            <intent-filter>
+44-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:33:13-37:29
+45                <action android:name="android.intent.action.BOOT_COMPLETED" />
+45-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:34:17-79
+45-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:34:25-76
+46
+47                <category android:name="android.intent.category.DEFAULT" />
+47-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:36:17-76
+47-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:36:27-73
+48            </intent-filter>
+49        </receiver>
+50    </application>
+51
+52</manifest>

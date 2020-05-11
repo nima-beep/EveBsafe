@@ -44,7 +44,8 @@ import com.project.evebsafe.menuoptions.SetNumber;
 import com.project.evebsafe.menuoptions.Timeset;
 
 import java.util.ArrayList;
-import static android.Manifest.permission.ACCESS_NETWORK_STATE;
+import static android.Manifest.permission.SEND_SMS;
+import static android.Manifest.permission.SYSTEM_ALERT_WINDOW;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 
@@ -136,24 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // Runtime permission check for marshmallow and upper version
                 if(isChecked)
                 {
-                    if(hasCoarseLocation()&&hasFineLocation())
-                    {
-                       Enable();
-                    }
-                    else if(!hasCoarseLocation() &&hasFineLocation())
-                    {
-                        ActivityCompat.requestPermissions(MainActivity.this,new String[]{ACCESS_COARSE_LOCATION},1);
-                    }
-                    else if(hasCoarseLocation() &&!hasFineLocation())
-                    {
-                        ActivityCompat.requestPermissions(MainActivity.this,new String[]{ACCESS_FINE_LOCATION},2);
-                    }
-
-                    else
-                    {
-                        ActivityCompat.requestPermissions(MainActivity.this,new String[]{ACCESS_COARSE_LOCATION,ACCESS_FINE_LOCATION},3);
-                    }
-
+                    permissionChecker();
                 }
                 else
                 {
@@ -406,6 +390,22 @@ public void timeset(){
     public void permissionChecker()
     {
 
+        if(hasCoarseLocation()&& hasFineLocation()&& hasSmsPermission())
+        {
+            if(hasAlertWindow()){
+                Enable();
+            }else{
+                ActivityCompat.requestPermissions(MainActivity.this,new String[]{SYSTEM_ALERT_WINDOW},2);
+
+            }
+
+        }
+
+        else
+        {
+            ActivityCompat.requestPermissions(MainActivity.this,new String[]{ACCESS_COARSE_LOCATION,ACCESS_FINE_LOCATION,SEND_SMS},1);
+        }
+
     }
     public  boolean hasFineLocation()
     {
@@ -415,10 +415,18 @@ public void timeset(){
     {
         return  (ContextCompat.checkSelfPermission(getApplicationContext(),ACCESS_COARSE_LOCATION)== PackageManager.PERMISSION_GRANTED);
     }
-    public  boolean hasNetworkState()
+
+    public  boolean hasSmsPermission()
     {
-        return  (ContextCompat.checkSelfPermission(getApplicationContext(),ACCESS_NETWORK_STATE)== PackageManager.PERMISSION_GRANTED);
+        return  (ContextCompat.checkSelfPermission(getApplicationContext(),SEND_SMS)== PackageManager.PERMISSION_GRANTED);
     }
+
+    public  boolean hasAlertWindow()
+    {
+        return  (ContextCompat.checkSelfPermission(getApplicationContext(),SYSTEM_ALERT_WINDOW)== PackageManager.PERMISSION_GRANTED);
+    }
+
+
     public  void Enable()
     {
 
@@ -442,29 +450,9 @@ public void timeset(){
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
-            case 1:
-                if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                    Enable();
-                }
-                else
-                {
-                    Disable();
-                }
-                break;
+
             case 2:
-                if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
-
-                    Enable();
-
-                }
-                else
-                {
-                    Disable();
-                }
-                break;
-
-            case 3:
-                if(grantResults[0]==PackageManager.PERMISSION_GRANTED &&grantResults[1]==PackageManager.PERMISSION_GRANTED)
+                if(grantResults[0]==PackageManager.PERMISSION_GRANTED &&grantResults[1]==PackageManager.PERMISSION_GRANTED &&grantResults[2]==PackageManager.PERMISSION_GRANTED&&grantResults[3]==PackageManager.PERMISSION_GRANTED)
                 {
                     Enable();
                 }
