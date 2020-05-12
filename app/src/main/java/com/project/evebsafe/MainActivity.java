@@ -6,17 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.accounts.AbstractAccountAuthenticator;
-import android.content.Context;
+import android.app.Dialog;
 import android.content.Intent;
+
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -45,11 +52,11 @@ import com.project.evebsafe.menuoptions.Timeset;
 
 import java.util.ArrayList;
 import static android.Manifest.permission.SEND_SMS;
-import static android.Manifest.permission.SYSTEM_ALERT_WINDOW;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Backtrack, CancelListener, DeleteHandeller {
+
 
     SharedPreference preference;
     Button Register;
@@ -67,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ActionBarDrawerToggle toggle;
     FragmentManager fragmentManager;
     FloatingActionButton floatingActionButton;
+    Dialog dialog;
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +145,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // Runtime permission check for marshmallow and upper version
                 if(isChecked)
                 {
-                    permissionChecker();
+                    if (!hasAlertWindow())
+                    {
+                        Disable();
+                        Intent checkIntent=new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:"+getPackageName()));
+                        startActivity(checkIntent);
+                    }else{
+                        permissionChecker();
+
+                    }
                 }
                 else
                 {
@@ -387,33 +403,25 @@ public void timeset(){
         showList();
 
     }
-    public void permissionChecker()
-    {
-
-        if(hasCoarseLocation()&& hasFineLocation()&& hasSmsPermission())
-        {
-            if(hasAlertWindow()){
-                Enable();
-            }else{
-                ActivityCompat.requestPermissions(MainActivity.this,new String[]{SYSTEM_ALERT_WINDOW},2);
-
-            }
+    public void permissionChecker(){
+        if(hasFineLocation() &  hasSmsPermission()){
+            Enable();
+        }
+        else if(hasFineLocation() && !hasSmsPermission()){
+            ActivityCompat.requestPermissions(this,new String[]{SEND_SMS},1);
 
         }
+        else if(hasSmsPermission() & !hasFineLocation()){
+            ActivityCompat.requestPermissions(this,new String[]{ACCESS_FINE_LOCATION},2);
 
-        else
-        {
-            ActivityCompat.requestPermissions(MainActivity.this,new String[]{ACCESS_COARSE_LOCATION,ACCESS_FINE_LOCATION,SEND_SMS},1);
         }
-
+        else {
+            ActivityCompat.requestPermissions(this,new String[]{ACCESS_FINE_LOCATION, SEND_SMS},3);
+        }
     }
-    public  boolean hasFineLocation()
+   public  boolean hasFineLocation()
     {
        return  (ContextCompat.checkSelfPermission(getApplicationContext(),ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED);
-    }
-    public  boolean hasCoarseLocation()
-    {
-        return  (ContextCompat.checkSelfPermission(getApplicationContext(),ACCESS_COARSE_LOCATION)== PackageManager.PERMISSION_GRANTED);
     }
 
     public  boolean hasSmsPermission()
@@ -423,17 +431,30 @@ public void timeset(){
 
     public  boolean hasAlertWindow()
     {
-        return  (ContextCompat.checkSelfPermission(getApplicationContext(),SYSTEM_ALERT_WINDOW)== PackageManager.PERMISSION_GRANTED);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            return Settings.canDrawOverlays(this);
+        }else{
+            return true;
+        }
     }
 
 
     public  void Enable()
     {
 
-        Toast.makeText(MainActivity.this, "Enabled", Toast.LENGTH_SHORT).show();
-        sw.setText("Enabled");
-        preference.saverunningState(true);
-        startService(intent);
+       if(!isGPSEnabled())
+       {
+
+           alertWindow();
+       }
+
+           Toast.makeText(MainActivity.this, "Enabled", Toast.LENGTH_SHORT).show();
+           sw.setText("Enabled");
+           preference.saverunningState(true);
+           startService(intent);
+
+
+
     }
     public void Disable()
     {
@@ -451,20 +472,70 @@ public void timeset(){
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
 
-            case 2:
-                if(grantResults[0]==PackageManager.PERMISSION_GRANTED &&grantResults[1]==PackageManager.PERMISSION_GRANTED &&grantResults[2]==PackageManager.PERMISSION_GRANTED&&grantResults[3]==PackageManager.PERMISSION_GRANTED)
+            case 1:
+                if (grantResults[0]==PackageManager.PERMISSION_GRANTED)
                 {
                     Enable();
-                }
-                else
-                {
+                }else {
                     Disable();
                 }
                 break;
 
+            case 2:
+                if (grantResults[0]==PackageManager.PERMISSION_GRANTED)
+                {
+                    Enable();
+                }else {
+                    Disable();
+                }
+                break;
+            case 3:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1]==PackageManager.PERMISSION_GRANTED)
 
+
+                {
+                    Enable();
+                }else {
+                    Disable();
+                }
+                break;
 
         }
+    }
+    public void alertWindow() {
+        final TextView cancel, settings;
+
+
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_PHONE);
+        dialog.getWindow().setDimAmount(0);
+        dialog.setContentView(R.layout.alertwindow);
+        dialog.getWindow().setGravity(Gravity.CENTER);
+        dialog.show();
+        cancel = dialog.findViewById(R.id.cancelid);
+        settings = dialog.findViewById(R.id.settingsid);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public boolean isGPSEnabled(){
+        LocationManager locationManager=(LocationManager)getSystemService(LOCATION_SERVICE);
+
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 }
 

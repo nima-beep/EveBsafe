@@ -89,6 +89,22 @@
 47-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:36:27-73
 48            </intent-filter>
 49        </receiver>
-50    </application>
-51
-52</manifest>
+50
+51        <activity
+51-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\77c2fc448e2bd0738fd67dce062b1efd\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+52            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+52-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\77c2fc448e2bd0738fd67dce062b1efd\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+53            android:exported="false"
+53-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\77c2fc448e2bd0738fd67dce062b1efd\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+54            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+54-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\77c2fc448e2bd0738fd67dce062b1efd\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+55
+56        <meta-data
+56-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\a8d0b4ce5a9cac681c54b7591e5326bf\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+57            android:name="com.google.android.gms.version"
+57-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\a8d0b4ce5a9cac681c54b7591e5326bf\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+58            android:value="@integer/google_play_services_version" />
+58-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\a8d0b4ce5a9cac681c54b7591e5326bf\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+59    </application>
+60
+61</manifest>

@@ -105,6 +105,24 @@ public class UserInfo extends SQLiteOpenHelper {
 
      return object;
     }
+    public ArrayList <String>allNumber(){
+        SQLiteDatabase db=this.getWritableDatabase();
+        String SQL ="SELECT Phone_Number FROM "+tablename;
+        Cursor cursor=db.rawQuery(SQL,null);
+        ArrayList<String>Number;
+
+        Number=new ArrayList<>();
+
+
+        while (cursor.moveToNext()) {
+
+            Number.add(cursor.getString(0));
+
+        }
+
+       return Number;
+    }
+
 
     public void DeleteSingleUser(String number)
     {

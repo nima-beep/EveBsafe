@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.telephony.SmsManager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -22,20 +23,27 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.project.evebsafe.Database.SharedPreference;
+import com.project.evebsafe.Database.UserInfo;
 import com.project.evebsafe.R;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class EveBappService extends Service {
     SharedPreference preference;
+    double  pLat=180,pLongt=360;
+    UserInfo userInfo;
     LocationManager locationManager;
     GPS_TRACKER tracker;
     WindowManager windowManager;
     WindowManager.LayoutParams params;
     ImageView imageView;
     Dialog dialog;
+    ArrayList<String>numbers;
+    SmsManager smsManager;
 
+    long hr,min,sec,totaltime;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -45,9 +53,18 @@ public class EveBappService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        userInfo=new UserInfo(this);
+        numbers=userInfo.allNumber();
+        smsManager=SmsManager.getDefault();
+
         init();
         locationManager=(LocationManager)getSystemService(LOCATION_SERVICE);
         preference=new SharedPreference(this);
+        sec=preference.getSecond()*1000;
+        min=preference.getMinute()*60*1000;
+        hr=preference.getHour()*60*1000*60;
+        totaltime=sec+min+hr;
+
         final Handler handler=new Handler();//For synchronus task this object is needed
         handler.postDelayed(new Runnable() {
             @Override
@@ -100,7 +117,18 @@ public class EveBappService extends Service {
             String city=addresses.get(0).getLocality();
             String zip=addresses.get(0).getPostalCode();
             String country=addresses.get(0).getCountryName();
-            Toast.makeText(this, street+" "+city+" "+zip+" "+country, Toast.LENGTH_SHORT).show();
+            if (pLat!=latitude |pLongt!=longtitude)
+            {
+                for (int i=0;i<numbers.size();i++)
+                {
+                    smsManager.sendTextMessage(numbers.get(i),null,preference.getMessage()+" "+street+" "+city+" "+zip+" "+country,null,null);
+
+                }
+                pLongt=longtitude;
+                pLat=latitude;
+
+
+            }
 
         }catch (Exception e)
         {
