@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.project.evebsafe.Database.UserInfo;
+import com.project.evebsafe.Dialogboxes.Details;
 import com.project.evebsafe.Linkers.DeleteHandeller;
 import com.project.evebsafe.R;
 
@@ -23,6 +24,7 @@ public class CustomListViewAdapters extends ArrayAdapter<String> {
     DeleteHandeller deleteHandeller;
     View view;
     UserInfo userInfo;
+    Details details;
     TextView profilepic,name,number,delete;
     public CustomListViewAdapters(Context context, ArrayList<String> Name, ArrayList<String> Number, ArrayList<String> Profilepic, DeleteHandeller deleteHandeller, UserInfo userInfo) {
         super(context, R.layout.singleview,Name);
@@ -52,6 +54,12 @@ public class CustomListViewAdapters extends ArrayAdapter<String> {
         });
         name.setText(Name.get(position));
         number.setText(Number.get(position));
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                details=new Details(context,Number.get(position),userInfo);
+            }
+        });
         switch (Profilepic.get(position)){
             case "0":
                 profilepic.setBackgroundResource(array[0]);
