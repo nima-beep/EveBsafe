@@ -44,6 +44,9 @@ import com.project.evebsafe.Dialogboxes.ShowMessage;
 import com.project.evebsafe.Linkers.Backtrack;
 import com.project.evebsafe.Linkers.CancelListener;
 import com.project.evebsafe.Linkers.DeleteHandeller;
+import com.project.evebsafe.Model.RegistrationState;
+import com.project.evebsafe.Network.ApiClient;
+import com.project.evebsafe.Network.ApiService;
 import com.project.evebsafe.menuoptions.PatternConfirm;
 import com.project.evebsafe.menuoptions.PatternSet;
 import com.project.evebsafe.menuoptions.SetMessage;
@@ -51,6 +54,11 @@ import com.project.evebsafe.menuoptions.SetNumber;
 import com.project.evebsafe.menuoptions.Timeset;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static android.Manifest.permission.SEND_SMS;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
@@ -82,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         preference=new SharedPreference(this);
         userInfo=new UserInfo(this);
         intent=new Intent(this, EveBappService.class);
-        if (!preference.isRegistered()){
+        if (preference.isRegistered()){
             if(preference.isLocked()){
                 lockPattern=new LockPattern(this);
             }
@@ -303,7 +311,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-public void postToServer(String a,String b,String c,String d){
+public void postToServer(final String Name, final String PhoneNumber, final String Address, final String Email){
+    ApiService apiService= ApiClient.getClient().create(ApiService.class);
+    Call<RegistrationState>call=apiService.registration(Name,PhoneNumber,Address,Email);
+
+    call.enqueue(new Callback<RegistrationState>() {
+        @Override
+        public void onResponse(Call<RegistrationState> call, Response<RegistrationState> response) {
+            switch (response.body().getStatusCode())
+            {
+
+                case 0:
+                    Toast.makeText(MainActivity.this, "User already exits", Toast.LENGTH_SHORT).show();
+                    break;
+                case  1:
+                    Toast.makeText(MainActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
+                    //data will save in sharedPreference
+                    preference.saveUser(Name,PhoneNumber,Address,Email);
+                    startActivity(new Intent(MainActivity.this,MainActivity.class));
+                    finish();
+                    break;
+
+                case -1:
+                    Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                    break;
+
+            }
+        }
+
+        @Override
+        public void onFailure(Call<RegistrationState> call, Throwable t) {
+
+        }
+    });
 
 
 }
@@ -537,5 +577,7 @@ public void timeset(){
 
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
+
+
 }
 
