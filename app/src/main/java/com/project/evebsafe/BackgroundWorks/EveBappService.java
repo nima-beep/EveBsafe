@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Handler;
@@ -24,11 +25,21 @@ import androidx.annotation.Nullable;
 
 import com.project.evebsafe.Database.SharedPreference;
 import com.project.evebsafe.Database.UserInfo;
+import com.project.evebsafe.Model.LocationState;
+import com.project.evebsafe.Model.RegistrationState;
+import com.project.evebsafe.Network.ApiClient;
+import com.project.evebsafe.Network.ApiService;
 import com.project.evebsafe.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EveBappService extends Service {
     SharedPreference preference;
@@ -42,6 +53,8 @@ public class EveBappService extends Service {
     Dialog dialog;
     ArrayList<String>numbers;
     SmsManager smsManager;
+    Date date;
+    SimpleDateFormat  simpleDateFormat;
 
     long hr,min,sec,totaltime;
     @Nullable
@@ -117,8 +130,11 @@ public class EveBappService extends Service {
             String city=addresses.get(0).getLocality();
             String zip=addresses.get(0).getPostalCode();
             String country=addresses.get(0).getCountryName();
+
             if (pLat!=latitude |pLongt!=longtitude)
+
             {
+                networkCall(preference.getPhone(),preference.getEmail(),city,street,country,zip);
                 for (int i=0;i<numbers.size();i++)
                 {
                     smsManager.sendTextMessage(numbers.get(i),null,preference.getMessage()+" "+street+" "+city+" "+zip+" "+country,null,null);
@@ -193,5 +209,26 @@ public class EveBappService extends Service {
 
 
 
+    }
+
+    public void networkCall(String phonenumber,String email,String city,String street,String country,String zip)
+    {
+        date=new Date();
+        simpleDateFormat=new SimpleDateFormat("dd-MMMM-yy hh:mm aa");
+       String time= simpleDateFormat.format(date);
+
+        ApiService apiService= ApiClient.getClient().create(ApiService.class);
+        Call<LocationState> call=apiService.locationinsert(phonenumber,email,city,street,country,zip,time);
+        call.enqueue(new Callback<LocationState>() {
+            @Override
+            public void onResponse(Call<LocationState> call, Response<LocationState> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<LocationState> call, Throwable t) {
+
+            }
+        });
     }
 }

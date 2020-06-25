@@ -201,6 +201,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId())
                 {
+                    case R.id.showlocation:
+                        Toast.makeText(MainActivity.this, "Processing", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.numberSet:
                        setNumber();
                        drawerLayout.closeDrawers();
@@ -268,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                register();
                 break;
             case R.id.alreadyregistered:
-                Toast.makeText(this, "Already Registered", Toast.LENGTH_SHORT).show();
+                Alreadyregistered();
                 break;
         }
 
@@ -577,7 +580,72 @@ public void timeset(){
 
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
+public void Alreadyregistered()
+{
 
+
+
+    Dialog dialog1=new Dialog(this);
+    dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+    dialog1.setContentView(R.layout.alreadyinserted);
+    dialog1.show();
+    Button  button1;
+    final EditText editText1,editText2;
+
+    button1=dialog1.findViewById(R.id.newButton);
+    editText1=dialog1.findViewById(R.id.newPnNumber);
+    editText2=dialog1.findViewById(R.id.newEmail);
+
+    button1.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+           networkCall(editText1.getText().toString(),editText2.getText().toString());
+        }
+    });
+
+
+
+}
+
+public  void networkCall(String phonenumber,String email)
+{
+    ApiService apiService= ApiClient.getClient().create(ApiService.class);
+    Call<RegistrationState>call=apiService.registeredalready(phonenumber,email);
+
+    call.enqueue(new Callback<RegistrationState>() {
+        @Override
+        public void onResponse(Call<RegistrationState> call, Response<RegistrationState> response) {
+
+            switch (response.body().getStatusCode())
+            {
+
+                case 0:
+                    Toast.makeText(MainActivity.this, "User already exits", Toast.LENGTH_SHORT).show();
+                    break;
+                case  1:
+                    Toast.makeText(MainActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
+                    //received data for alreadyregistered will be saved in sharedPreference
+                    RegistrationState state=response.body();
+                    preference.saveUser(state.getName(),state.getPhoneNumber(),state.getAddress(),state.getEmail());
+                    startActivity(new Intent(MainActivity.this,MainActivity.class));
+                    finish();
+                    break;
+
+                case -1:
+                    Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                    break;
+
+            }
+        }
+
+        @Override
+        public void onFailure(Call<RegistrationState> call, Throwable t) {
+
+        }
+    });
+
+}
 
 }
 
