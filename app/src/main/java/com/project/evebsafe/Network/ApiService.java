@@ -1,7 +1,10 @@
 package com.project.evebsafe.Network;
 
+import com.project.evebsafe.Model.LocationResponse;
 import com.project.evebsafe.Model.LocationState;
 import com.project.evebsafe.Model.RegistrationState;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -29,5 +32,5 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("locationget.php")
-    Call<LocationState> locationget( @Field("PhoneNumber") String PhoneNumber,@Field("Email") String Email);
+    Call<List<LocationResponse>> locationget(@Field("PhoneNumber") String PhoneNumber, @Field("Email") String Email);
 }

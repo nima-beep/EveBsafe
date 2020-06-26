@@ -47,6 +47,7 @@ import com.project.evebsafe.Linkers.DeleteHandeller;
 import com.project.evebsafe.Model.RegistrationState;
 import com.project.evebsafe.Network.ApiClient;
 import com.project.evebsafe.Network.ApiService;
+import com.project.evebsafe.menuoptions.LocationDetails;
 import com.project.evebsafe.menuoptions.PatternConfirm;
 import com.project.evebsafe.menuoptions.PatternSet;
 import com.project.evebsafe.menuoptions.SetMessage;
@@ -202,7 +203,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switch (menuItem.getItemId())
                 {
                     case R.id.showlocation:
-                        Toast.makeText(MainActivity.this, "Processing", Toast.LENGTH_SHORT).show();
+                        locationDetails();
+                        drawerLayout.closeDrawers();
                         break;
                     case R.id.numberSet:
                        setNumber();
@@ -407,7 +409,7 @@ public void timeset(){
     }
     public void setMessage(){
 
-     SetMessage setMessage=new SetMessage(this);
+        SetMessage setMessage=new SetMessage(this);
         fragmentManager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.rootLayout,setMessage);
@@ -647,5 +649,14 @@ public  void networkCall(String phonenumber,String email)
 
 }
 
+public void locationDetails()
+{
+    LocationDetails locationDetails=new  LocationDetails(preference);
+    fragmentManager=getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+    fragmentTransaction.replace(R.id.rootLayout, locationDetails);
+    fragmentTransaction.addToBackStack("LocationDetails");
+    fragmentTransaction.commit();
+}
 }
 
