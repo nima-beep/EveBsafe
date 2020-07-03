@@ -115,12 +115,10 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Nu
 		ADDED from C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:17:9-35
 	android:label
 		ADDED from C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:15:9-41
-	android:roundIcon
-		ADDED from C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:16:9-54
 	android:largeHeap
 		ADDED from C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:12:9-33
 	android:icon
-		ADDED from C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:14:9-43
+		ADDED from C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:14:9-44
 	android:allowBackup
 		ADDED from C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:13:9-35
 	android:theme

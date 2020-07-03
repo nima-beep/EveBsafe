@@ -39,74 +39,72 @@
 21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 21-->[androidx.core:core:1.1.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\e9dab9c67c1ee3668e0bbf86c6d8cbd8\core-1.1.0\AndroidManifest.xml:24:18-86
 22        android:debuggable="true"
-23        android:icon="@mipmap/ic_launcher"
-23-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:14:9-43
+23        android:icon="@mipmap/evebsafelogo"
+23-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:14:9-44
 24        android:label="@string/app_name"
 24-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:15:9-41
 25        android:largeHeap="true"
 25-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:12:9-33
-26        android:roundIcon="@mipmap/ic_launcher_round"
-26-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:16:9-54
-27        android:supportsRtl="true"
-27-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:17:9-35
-28        android:testOnly="true"
-29        android:theme="@style/AppTheme" >
-29-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:18:9-40
-30        <activity
-30-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:19:9-27:20
-31            android:name="com.project.evebsafe.MainActivity"
-31-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:19:19-47
-32            android:windowSoftInputMode="adjustPan" >
-32-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:20:13-52
-33            <intent-filter>
-33-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:22:13-26:29
-34                <action android:name="android.intent.action.MAIN" />
-34-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:23:17-69
-34-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:23:25-66
-35
-36                <category android:name="android.intent.category.LAUNCHER" />
-36-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:25:17-77
-36-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:25:27-74
-37            </intent-filter>
-38        </activity>
-39
-40        <service android:name="com.project.evebsafe.BackgroundWorks.EveBappService" />
-40-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:28:9-66
-40-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:28:18-64
-41
-42        <receiver
-42-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:29:9-40:20
-43            android:name="com.project.evebsafe.BackgroundWorks.RebootHandeller"
-43-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:29:19-66
-44            android:enabled="true" >
-44-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:30:13-35
-45            <intent-filter>
-45-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:34:13-38:29
-46                <action android:name="android.intent.action.BOOT_COMPLETED" />
-46-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:35:17-79
-46-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:35:25-76
-47
-48                <category android:name="android.intent.category.DEFAULT" />
-48-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:37:17-76
-48-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:37:27-73
-49            </intent-filter>
-50        </receiver>
-51
-52        <activity
-52-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\77c2fc448e2bd0738fd67dce062b1efd\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
-53            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-53-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\77c2fc448e2bd0738fd67dce062b1efd\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
-54            android:exported="false"
-54-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\77c2fc448e2bd0738fd67dce062b1efd\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
-55            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-55-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\77c2fc448e2bd0738fd67dce062b1efd\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
-56
-57        <meta-data
-57-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\a8d0b4ce5a9cac681c54b7591e5326bf\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
-58            android:name="com.google.android.gms.version"
-58-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\a8d0b4ce5a9cac681c54b7591e5326bf\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
-59            android:value="@integer/google_play_services_version" />
-59-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\a8d0b4ce5a9cac681c54b7591e5326bf\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
-60    </application>
-61
-62</manifest>
+26        android:supportsRtl="true"
+26-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:17:9-35
+27        android:testOnly="true"
+28        android:theme="@style/AppTheme" >
+28-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:18:9-40
+29        <activity
+29-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:19:9-27:20
+30            android:name="com.project.evebsafe.MainActivity"
+30-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:19:19-47
+31            android:windowSoftInputMode="adjustPan" >
+31-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:20:13-52
+32            <intent-filter>
+32-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:22:13-26:29
+33                <action android:name="android.intent.action.MAIN" />
+33-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:23:17-69
+33-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:23:25-66
+34
+35                <category android:name="android.intent.category.LAUNCHER" />
+35-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:25:17-77
+35-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:25:27-74
+36            </intent-filter>
+37        </activity>
+38
+39        <service android:name="com.project.evebsafe.BackgroundWorks.EveBappService" />
+39-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:28:9-66
+39-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:28:18-64
+40
+41        <receiver
+41-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:29:9-40:20
+42            android:name="com.project.evebsafe.BackgroundWorks.RebootHandeller"
+42-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:29:19-66
+43            android:enabled="true" >
+43-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:30:13-35
+44            <intent-filter>
+44-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:34:13-38:29
+45                <action android:name="android.intent.action.BOOT_COMPLETED" />
+45-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:35:17-79
+45-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:35:25-76
+46
+47                <category android:name="android.intent.category.DEFAULT" />
+47-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:37:17-76
+47-->C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app\src\main\AndroidManifest.xml:37:27-73
+48            </intent-filter>
+49        </receiver>
+50
+51        <activity
+51-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\77c2fc448e2bd0738fd67dce062b1efd\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+52            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+52-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\77c2fc448e2bd0738fd67dce062b1efd\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+53            android:exported="false"
+53-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\77c2fc448e2bd0738fd67dce062b1efd\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+54            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+54-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\77c2fc448e2bd0738fd67dce062b1efd\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+55
+56        <meta-data
+56-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\a8d0b4ce5a9cac681c54b7591e5326bf\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+57            android:name="com.google.android.gms.version"
+57-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\a8d0b4ce5a9cac681c54b7591e5326bf\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+58            android:value="@integer/google_play_services_version" />
+58-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Nuzhat\.gradle\caches\transforms-2\files-2.1\a8d0b4ce5a9cac681c54b7591e5326bf\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+59    </application>
+60
+61</manifest>

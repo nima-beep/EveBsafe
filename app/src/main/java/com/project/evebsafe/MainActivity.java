@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setContentView(R.layout.activity_main);
             deleteHandeller=this;
 
-            floatingActionButton=findViewById(R.id.fab);
+
 
             listView=findViewById(R.id.listviewid);
             drawerLayout=findViewById(R.id.drawerLayout);
@@ -109,14 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             showList();
             mynavigationview();
-            floatingActionButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                    ShowMessage showMessage=new ShowMessage(MainActivity.this,preference);
-
-                }
-            });
             ShakeEventDetector shakeEventDetector=new ShakeEventDetector(this);
             shakeEventDetector.setOnShakeEventListener(new ShakeEventDetector.OnShakeListener() {
                 @Override

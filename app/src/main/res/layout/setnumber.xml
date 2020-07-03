@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/looo" />
+        app:srcCompat="@drawable/logo" />
 
     <EditText
         android:gravity="center"
@@ -47,7 +47,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/messageset"
+        android:background="@drawable/namelogo"
         app:layout_constraintBottom_toTopOf="@+id/tv2"
         app:layout_constraintEnd_toStartOf="@+id/nameEdit"
         app:layout_constraintStart_toStartOf="parent"
