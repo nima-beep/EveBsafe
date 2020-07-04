@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SharedPreference preference;
     Button Register;
     EditText EName,Enumber,Eaddress,Eemail;
-    TextView alreadyregistered,textView;
+    TextView alreadyregistered,textView,hr,min,sec,msg;
     ListView listView;
     String Name,Email,Address,Phone;
     LockPattern lockPattern;
@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     NavigationView  navigationView;
     ActionBarDrawerToggle toggle;
     FragmentManager fragmentManager;
-    FloatingActionButton floatingActionButton;
     Dialog dialog;
     Intent intent;
     @Override
@@ -98,9 +97,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setContentView(R.layout.activity_main);
             deleteHandeller=this;
 
+            hr=findViewById(R.id.showhr);
+            min=findViewById(R.id.showmin);
+            sec=findViewById(R.id.showsec);
+            msg=findViewById(R.id.showMessageId);
+
+            hr.setText(String.valueOf(preference.getHour())+" hr");
+            min.setText(String.valueOf(preference.getMinute())+" min");
+            sec.setText(String.valueOf(preference.getSecond())+" sec");
+            msg.setText(preference.getMessage());
 
 
-            listView=findViewById(R.id.listviewid);
+            listView=findViewById(R.id.listviewId);
             drawerLayout=findViewById(R.id.drawerLayout);
             navigationView=findViewById(R.id.navigationview);
             toggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.Open,R.string.Close);

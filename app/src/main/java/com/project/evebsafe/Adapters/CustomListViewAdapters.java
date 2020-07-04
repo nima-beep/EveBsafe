@@ -1,6 +1,7 @@
 package com.project.evebsafe.Adapters;
 
 import android.content.Context;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,8 +49,8 @@ public class CustomListViewAdapters extends ArrayAdapter<String> {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userInfo.DeleteSingleUser(Number.get(position));
-                deleteHandeller.delete();
+                delayFunction(position);
+
             }
         });
         name.setText(Name.get(position));
@@ -91,5 +92,22 @@ public class CustomListViewAdapters extends ArrayAdapter<String> {
     public int getCount() {
 
         return Name.size();
+    }
+
+    public void delayFunction(final int position)
+    {
+        CountDownTimer countDownTimer=new CountDownTimer(3000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                userInfo.DeleteSingleUser(Number.get(position));
+                deleteHandeller.delete();
+
+            }
+        }.start();
     }
 }
