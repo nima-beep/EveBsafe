@@ -21,7 +21,7 @@ public class Details extends Dialog {
     int width,height;
 
     TextView profilepic,gender,occupation,address,name,number;
-    int array[]={R.drawable.nairobi,R.drawable.professor1, R.drawable.sergio,R.drawable.tokyo};
+    int array[]={R.drawable.frnd1,R.drawable.pro1, R.drawable.pro2,R.drawable.frnd2};
 
     public Details(@NonNull Context context,String Number,UserInfo userInfo) {
         super(context);

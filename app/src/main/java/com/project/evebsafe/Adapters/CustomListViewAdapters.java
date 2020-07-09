@@ -1,11 +1,14 @@
 package com.project.evebsafe.Adapters;
 
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,7 +29,9 @@ public class CustomListViewAdapters extends ArrayAdapter<String> {
     View view;
     UserInfo userInfo;
     Details details;
-    TextView profilepic,name,number,delete;
+    TextView profilepic,name,number;
+    Button delete;
+
     public CustomListViewAdapters(Context context, ArrayList<String> Name, ArrayList<String> Number, ArrayList<String> Profilepic, DeleteHandeller deleteHandeller, UserInfo userInfo) {
         super(context, R.layout.singleview,Name);
         this.context=context;
@@ -46,10 +51,15 @@ public class CustomListViewAdapters extends ArrayAdapter<String> {
         name=view.findViewById(R.id.nameoffriend);
         number=view.findViewById(R.id.phonenumberfriend);
         delete=view.findViewById(R.id.deleteId);
+
+
+
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 delayFunction(position);
+
 
             }
         });
@@ -96,7 +106,7 @@ public class CustomListViewAdapters extends ArrayAdapter<String> {
 
     public void delayFunction(final int position)
     {
-        CountDownTimer countDownTimer=new CountDownTimer(3000,1000) {
+        CountDownTimer countDownTimer=new CountDownTimer(1500,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 

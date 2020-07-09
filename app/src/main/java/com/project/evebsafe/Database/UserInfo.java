@@ -65,7 +65,7 @@ public class UserInfo extends SQLiteOpenHelper {
 
         SQLiteDatabase db=this.getWritableDatabase();
         ArrayList<String> arrayList=new ArrayList<>();
-        String SQL ="SELECT FROM "+tablename+" WHERE Phone_Number='"+number+"'";
+        String SQL ="SELECT * FROM "+tablename+" WHERE Phone_Number='"+number+"'";
         Cursor cursor=db.rawQuery(SQL,null);
         while (cursor.moveToNext())
         {
