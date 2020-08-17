@@ -20,7 +20,7 @@ import com.project.evebsafe.R;
 public class PatternConfirm extends Fragment implements View.OnClickListener{
 
     View view;
-    String passedstring="",samestring;
+    String passedstring="",confirmpattern;
     Context context;
     PatternLockView patternLockView;
     Button next,cancel;
@@ -52,7 +52,7 @@ public class PatternConfirm extends Fragment implements View.OnClickListener{
 
             @Override
             public void onFinish(String pattern) {
-               samestring=pattern;
+               confirmpattern=pattern;
 
             }
         });
@@ -66,9 +66,9 @@ public class PatternConfirm extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.setpatternnnext:
-                if(passedstring.equals(samestring))
+                if(passedstring.equals(confirmpattern))
                 {
-                    preference.savePattern(samestring);
+                    preference.savePattern(confirmpattern);
                     Toast.makeText(context, "Successfully saved", Toast.LENGTH_SHORT).show();
                     cancelListener.onComplete();
 

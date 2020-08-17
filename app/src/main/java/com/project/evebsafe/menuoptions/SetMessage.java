@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.project.evebsafe.Database.SharedPreference;
+import com.project.evebsafe.Linkers.ShowInterface;
 import com.project.evebsafe.R;
 
 public class SetMessage extends Fragment  implements View.OnClickListener{
@@ -26,9 +27,11 @@ public class SetMessage extends Fragment  implements View.OnClickListener{
     EditText editText;
     TextView textView;
     Button button;
+    ShowInterface showInterface;
 
-    public SetMessage( Context context) {
+    public SetMessage(Context context, ShowInterface showInterface) {
         this.context=context;
+        this.showInterface=showInterface;
         preference=new SharedPreference(context);
 
 
@@ -69,7 +72,7 @@ public class SetMessage extends Fragment  implements View.OnClickListener{
     @Override
     public void onClick(View v) {
     preference.saveMessage(editText.getText().toString());
-
+    showInterface.refresh();
 
     }
 }

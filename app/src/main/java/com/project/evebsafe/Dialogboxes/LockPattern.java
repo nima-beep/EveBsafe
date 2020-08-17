@@ -15,11 +15,11 @@ public class LockPattern extends Dialog {
     String pat="";
     SharedPreference preference;
     public LockPattern( Context context) {
-        super(context,android.R.style.Theme_DeviceDefault_Light_NoActionBar);
+        super(context,android.R.style.Theme_DeviceDefault_Light_NoActionBar);//pattern lock full screen
         this.context=context;
         preference=new SharedPreference(context);
-        pat=preference.getPattern();
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        pat=preference.getPattern();//fetched from sharedpreference
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//for custom title
         setCancelable(false);
         setContentView(R.layout.patternlockview);
         lockView=findViewById(R.id.setpatternlockview);
@@ -33,7 +33,7 @@ public class LockPattern extends Dialog {
             @Override
             public void onFinish(String pattern) {
 
-                if(pattern.equals(pat))
+                if(pattern.equals(pat))//here pattern is user input
                 {
                    dismiss();
 

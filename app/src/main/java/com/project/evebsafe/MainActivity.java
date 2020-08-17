@@ -44,6 +44,8 @@ import com.project.evebsafe.Dialogboxes.ShowMessage;
 import com.project.evebsafe.Linkers.Backtrack;
 import com.project.evebsafe.Linkers.CancelListener;
 import com.project.evebsafe.Linkers.DeleteHandeller;
+import com.project.evebsafe.Linkers.ShowInterface;
+import com.project.evebsafe.Linkers.ShowTime;
 import com.project.evebsafe.Model.RegistrationState;
 import com.project.evebsafe.Network.ApiClient;
 import com.project.evebsafe.Network.ApiService;
@@ -64,7 +66,7 @@ import static android.Manifest.permission.SEND_SMS;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, Backtrack, CancelListener, DeleteHandeller {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, Backtrack, CancelListener, DeleteHandeller, ShowInterface, ShowTime {
 
 
     SharedPreference preference;
@@ -158,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (!hasAlertWindow())
                     {
                         Disable();
+                        //taking permission for alert window
                         Intent checkIntent=new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:"+getPackageName()));
                         startActivity(checkIntent);
                     }else{
@@ -268,9 +271,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v) {//
         switch (v.getId()){
-            case R.id.registerbutton:
+            case R.id.registerbutton://registration is complete intially
                register();
                 break;
             case R.id.alreadyregistered:
@@ -309,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  else
                  {
 
-                     postToServer(Name,Phone,Address,Email);
+                     postToServer(Name,Phone,Address,Email);//sending data to server
                  }
              }
           }
@@ -318,12 +321,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 public void postToServer(final String Name, final String PhoneNumber, final String Address, final String Email){
-    ApiService apiService= ApiClient.getClient().create(ApiService.class);
-    Call<RegistrationState>call=apiService.registration(Name,PhoneNumber,Address,Email);
+    ApiService apiService= ApiClient.getClient().create(ApiService.class);//Retrofit library for  mobilenetwork for connecting server
+    Call<RegistrationState>call=apiService.registration(Name,PhoneNumber,Address,Email);//part of API calling,in Network-ApiService
 
-    call.enqueue(new Callback<RegistrationState>() {
+    call.enqueue(new Callback<RegistrationState>() {//server calling method
         @Override
-        public void onResponse(Call<RegistrationState> call, Response<RegistrationState> response) {
+        public void onResponse(Call<RegistrationState> call, Response<RegistrationState> response) {//regiatration is used for mapping the server response,Model-registrationState
             switch (response.body().getStatusCode())
             {
 
@@ -378,7 +381,8 @@ public void patternconfirm(String samestring){
 }
 public void timeset(){
     Backtrack  backtrack=this;
-    Timeset timeset=new Timeset(this,backtrack);
+    ShowTime showTime=this;
+    Timeset timeset=new Timeset(this,backtrack,showTime);
     fragmentManager=getSupportFragmentManager();
     FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
     fragmentTransaction.replace(R.id.rootLayout,timeset);
@@ -409,13 +413,13 @@ public void timeset(){
 
     }
     public void setMessage(){
-
-        SetMessage setMessage=new SetMessage(this);
+        ShowInterface showInterface=this;
+        SetMessage setMessage=new SetMessage(this,showInterface);
         fragmentManager=getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.rootLayout,setMessage);
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();//start work
+        fragmentTransaction.replace(R.id.rootLayout,setMessage);//replace with home screen
         fragmentTransaction.addToBackStack("SetMessage");
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();//submit
 
     }
 
@@ -445,10 +449,11 @@ public void timeset(){
 
 
     @Override
-    public void delete() {
+    public void delete() {//To refresh the list
         showList();
 
     }
+    //runtime permission
     public void permissionChecker(){
         if(hasFineLocation() &  hasSmsPermission()){
             Enable();
@@ -476,7 +481,7 @@ public void timeset(){
     }
 
     public  boolean hasAlertWindow()
-    {
+    {//permission for upper marshmallow
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
             return Settings.canDrawOverlays(this);
         }else{
@@ -518,6 +523,7 @@ public void timeset(){
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
 
+            //here [0] ,because the element in permissionchecke() method
             case 1:
                 if (grantResults[0]==PackageManager.PERMISSION_GRANTED)
                 {
@@ -659,5 +665,18 @@ public void locationDetails()
     fragmentTransaction.addToBackStack("LocationDetails");
     fragmentTransaction.commit();
 }
+
+    @Override
+    public void refresh() {
+        msg.setText(preference.getMessage());
+    }
+
+    @Override
+    public void refreshtime() {
+        hr=findViewById(R.id.showhr);
+        min=findViewById(R.id.showmin);
+        sec=findViewById(R.id.showsec);
+
+    }
 }
 

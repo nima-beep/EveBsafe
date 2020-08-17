@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.project.evebsafe.Database.SharedPreference;
 import com.project.evebsafe.Linkers.Backtrack;
+import com.project.evebsafe.Linkers.ShowTime;
 import com.project.evebsafe.MainActivity;
 import com.project.evebsafe.R;
 
@@ -28,10 +29,12 @@ public class Timeset extends Fragment implements View.OnClickListener, NumberPic
   TextView display;
   Backtrack backtrack;
   Context  context;
+  ShowTime showTime;
  int H,M,S;
-    public Timeset(Context context, Backtrack backtrack) {
+    public Timeset(Context context, Backtrack backtrack, ShowTime showTime) {
         this.context=context;
         this.backtrack=backtrack;
+        this.showTime=showTime;
         preference=new SharedPreference(context);
 
     }
@@ -67,6 +70,7 @@ public class Timeset extends Fragment implements View.OnClickListener, NumberPic
             case R.id.timesetSave:
                 display.setText(String.valueOf(H)+" : "+String.valueOf(M)+" : " +String.valueOf(S));
                 preference.saveTime(H,M,S);
+                showTime.refreshtime();
 
                 break;
             case R.id.timesetCancel:

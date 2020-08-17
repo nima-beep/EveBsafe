@@ -58,7 +58,10 @@ public class CustomListViewAdapters extends ArrayAdapter<String> {
             @Override
             public void onClick(View v) {
 
-                delayFunction(position);
+                userInfo.DeleteSingleUser(Number.get(position));
+                deleteHandeller.delete();
+
+
 
 
             }
@@ -99,25 +102,10 @@ public class CustomListViewAdapters extends ArrayAdapter<String> {
     }
 
     @Override
-    public int getCount() {
+    public int getCount() {//DEFAULT method for list view for counting total element
 
         return Name.size();
     }
 
-    public void delayFunction(final int position)
-    {
-        CountDownTimer countDownTimer=new CountDownTimer(1500,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
 
-            }
-
-            @Override
-            public void onFinish() {
-                userInfo.DeleteSingleUser(Number.get(position));
-                deleteHandeller.delete();
-
-            }
-        }.start();
-    }
 }

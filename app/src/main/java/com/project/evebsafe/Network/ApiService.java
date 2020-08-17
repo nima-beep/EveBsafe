@@ -14,6 +14,7 @@ import retrofit2.http.POST;
 public interface ApiService {
 
     // for using post method we used @FormUrlEncoded
+    //web data receiver field
     @FormUrlEncoded
     @POST("registration.php")
     Call<RegistrationState> registration(@Field("Name") String Name, @Field("PhoneNumber") String PhoneNumber, @Field("Address") String Address, @Field("Email") String Email);

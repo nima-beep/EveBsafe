@@ -30,7 +30,7 @@ public class Details extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         WindowManager windowManager=(WindowManager)context.getSystemService(Context.WINDOW_SERVICE);//to access the display information
         Display display=windowManager.getDefaultDisplay();//display information is stored in display object
-        Point point=new Point();
+        Point point=new Point();//for fixing in different phones
         display.getSize(point);//display is converted into points
         width=point.x;
         height=point.y;
@@ -47,7 +47,7 @@ public class Details extends Dialog {
        name.setText(data.get(0));
        number.setText(data.get(1));
        address.setText(data.get(2));
-       profilepic.setBackgroundResource(array[Integer.parseInt(data.get(3))]);
+       profilepic.setBackgroundResource(array[Integer.parseInt(data.get(3))]);//in database the pic is not saved,the index number is saved
        occupation.setText(data.get(4));
        gender.setText(data.get(5));
 
