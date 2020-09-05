@@ -673,9 +673,10 @@ public void locationDetails()
 
     @Override
     public void refreshtime() {
-        hr=findViewById(R.id.showhr);
-        min=findViewById(R.id.showmin);
-        sec=findViewById(R.id.showsec);
+        hr.setText(String.valueOf(preference.getHour())+" hr");
+        min.setText(String.valueOf(preference.getMinute())+" min");
+        sec.setText(String.valueOf(preference.getSecond())+" sec");
+
 
     }
 }

@@ -151,5 +151,18 @@ public class SharedPreference {
 
 
    }
+   public void setVisibility(boolean value)
+   {
+       preferences = context.getSharedPreferences(Constants.APPS_PREFERENCE, Context.MODE_PRIVATE);
+       editor = preferences.edit();
+       editor.putBoolean(Constants.VISIBILITY,value);
 
+       editor.commit();
+   }
+
+   public boolean isShown()
+   {
+       preferences = context.getSharedPreferences(Constants.APPS_PREFERENCE, Context.MODE_PRIVATE);
+       return preferences.getBoolean(Constants.VISIBILITY,false);
+   }
 }

@@ -1,0 +1,4 @@
+moment                 shaketimestamp         current time     shaketimestamp+Timetoreset<currenttime
+1                            0			10000           0+3000<10000
+2 			10000			10400		10000+3000<10400
+3                       10400                   15000           10400+300<15000

@@ -50,7 +50,6 @@ public class EveBappService extends Service {
     WindowManager windowManager;
     WindowManager.LayoutParams params;
     ImageView imageView;
-    Dialog dialog;
     ArrayList<String>numbers;
     SmsManager smsManager;
     Date date;
@@ -70,7 +69,7 @@ public class EveBappService extends Service {
         numbers=userInfo.allNumber();
         smsManager=SmsManager.getDefault();
 
-        init();
+       init();
         locationManager=(LocationManager)getSystemService(LOCATION_SERVICE);
         preference=new SharedPreference(this);
         sec=preference.getSecond()*1000;
@@ -92,15 +91,11 @@ public class EveBappService extends Service {
 
                    }else{
 
-                      if(dialog==null)
+                      if(!preference.isShown())
                       {
                           alertWindow();
                       }
-                      else if(!dialog.isShowing())
-                      {
 
-                          alertWindow();
-                      }
 
                    }
                }
@@ -154,18 +149,18 @@ public class EveBappService extends Service {
     }
     public void init() {
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {   //for showing alert window on top
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {   //for showing alert window on top
             params = new WindowManager.LayoutParams(
                     WindowManager.LayoutParams.WRAP_CONTENT,
                     WindowManager.LayoutParams.WRAP_CONTENT,
-                    WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+                    WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
                     WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                     PixelFormat.TRANSLUCENT);
         } else {
             params = new WindowManager.LayoutParams(     //for showing alert window on top
                     WindowManager.LayoutParams.WRAP_CONTENT,
                     WindowManager.LayoutParams.WRAP_CONTENT,
-                    WindowManager.LayoutParams.TYPE_APPLICATION_MEDIA,
+                    WindowManager.LayoutParams.TYPE_PHONE,
                     WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                     PixelFormat.TRANSLUCENT);
         }
@@ -181,8 +176,8 @@ public class EveBappService extends Service {
     public void alertWindow() {
         final TextView cancel,settings;
 
-
-        dialog = new Dialog(this);
+        preference.setVisibility(true);
+        final Dialog  dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_PHONE);
         dialog.getWindow().setDimAmount(0);
@@ -195,6 +190,7 @@ public class EveBappService extends Service {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                preference.setVisibility(false);
             }
         });
         settings.setOnClickListener(new View.OnClickListener() {
@@ -204,6 +200,7 @@ public class EveBappService extends Service {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 dialog.dismiss();
+                preference.setVisibility(false);
             }
         });
 
