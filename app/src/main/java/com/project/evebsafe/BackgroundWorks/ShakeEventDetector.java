@@ -75,4 +75,5 @@ public class ShakeEventDetector implements SensorEventListener {
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+
 }

@@ -14,11 +14,14 @@ import android.app.Dialog;
 import android.content.Intent;
 
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.telephony.SmsManager;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +39,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.project.evebsafe.Adapters.CustomListViewAdapters;
 import com.project.evebsafe.BackgroundWorks.EveBappService;
+import com.project.evebsafe.BackgroundWorks.GPS_TRACKER;
 import com.project.evebsafe.BackgroundWorks.ShakeEventDetector;
 import com.project.evebsafe.Database.SharedPreference;
 import com.project.evebsafe.Database.UserInfo;
@@ -46,6 +50,7 @@ import com.project.evebsafe.Linkers.CancelListener;
 import com.project.evebsafe.Linkers.DeleteHandeller;
 import com.project.evebsafe.Linkers.ShowInterface;
 import com.project.evebsafe.Linkers.ShowTime;
+import com.project.evebsafe.Model.LocationState;
 import com.project.evebsafe.Model.RegistrationState;
 import com.project.evebsafe.Network.ApiClient;
 import com.project.evebsafe.Network.ApiService;
@@ -56,7 +61,11 @@ import com.project.evebsafe.menuoptions.SetMessage;
 import com.project.evebsafe.menuoptions.SetNumber;
 import com.project.evebsafe.menuoptions.Timeset;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,8 +77,13 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Backtrack, CancelListener, DeleteHandeller, ShowInterface, ShowTime {
 
-
+    SmsManager smsManager;
+    ArrayList<String>numbers;
+    double  pLat=180,pLongt=360;
     SharedPreference preference;
+    GPS_TRACKER tracker;
+    Date date;
+    SimpleDateFormat  simpleDateFormat;
     Button Register;
     EditText EName,Enumber,Eaddress,Eemail;
     TextView alreadyregistered,textView,hr,min,sec,msg;
@@ -89,8 +103,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         preference=new SharedPreference(this);
         userInfo=new UserInfo(this);
+        numbers=userInfo.allNumber();
+        smsManager=SmsManager.getDefault();
         intent=new Intent(this, EveBappService.class);
         if (preference.isRegistered()){
             if(preference.isLocked()){
@@ -124,7 +141,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             shakeEventDetector.setOnShakeEventListener(new ShakeEventDetector.OnShakeListener() {
                 @Override
                 public void OnShake(int count) {
-                    Toast.makeText(MainActivity.this, String.valueOf(count), Toast.LENGTH_SHORT).show();
+                    if (isGPSEnabled()){
+                        tracker=new GPS_TRACKER(MainActivity.this);
+                        getCompleteAddress(tracker.getLat(),tracker.getLongt());
+
+                    }
                 }
             });
 
@@ -679,5 +700,59 @@ public void locationDetails()
 
 
     }
+
+    public void getCompleteAddress(double latitude,double longtitude)
+    {
+        try{
+            Geocoder geocoder=new Geocoder(this, Locale.getDefault());
+            List<android.location.Address> addresses=geocoder.getFromLocation(latitude,longtitude,1);
+            String  street=addresses.get(0).getAddressLine(0);
+            String city=addresses.get(0).getLocality();
+            String zip=addresses.get(0).getPostalCode();
+            String country=addresses.get(0).getCountryName();
+
+            if (pLat!=latitude |pLongt!=longtitude)
+
+            {
+                networkCall(preference.getPhone(),preference.getEmail(),city,street,country,zip);
+                for (int i=0;i<numbers.size();i++)
+                {
+                    smsManager.sendTextMessage(numbers.get(i),null,preference.getMessage()+" "+street+" "+city+" "+zip+" "+country,null,null);
+
+                }
+                pLongt=longtitude;
+                pLat=latitude;
+
+
+            }
+
+        }catch (Exception e)
+        {
+
+        }
+
+    }
+
+    public void networkCall(String phonenumber,String email,String city,String street,String country,String zip)
+    {
+        date=new Date();
+        simpleDateFormat=new SimpleDateFormat("dd-MMMM-yy hh:mm aa");
+        String time= simpleDateFormat.format(date);
+
+        ApiService apiService= ApiClient.getClient().create(ApiService.class);
+        Call<LocationState> call=apiService.locationinsert(phonenumber,email,city,street,country,zip,time);
+        call.enqueue(new Callback<LocationState>() {
+            @Override
+            public void onResponse(Call<LocationState> call, Response<LocationState> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<LocationState> call, Throwable t) {
+
+            }
+        });
+    }
 }
+
 
