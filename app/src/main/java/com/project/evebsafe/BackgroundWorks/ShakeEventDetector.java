@@ -47,7 +47,7 @@ public class ShakeEventDetector implements SensorEventListener {
             gx=x/SensorManager.GRAVITY_EARTH;
             gy=y/SensorManager.GRAVITY_EARTH;
             gz=z/SensorManager.GRAVITY_EARTH;
-            geforce= (float)Math.sqrt(gx*gx+gy*gy+gz*gz);
+            geforce= (float)Math.sqrt(gx*gx+gy*gy+gz*gz);//magnitude
             if(geforce>GRAVITY_THRESHOLD)
             {
                 final long currenTime=System.currentTimeMillis();

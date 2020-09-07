@@ -28,7 +28,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("locationinsert.php")
     Call<LocationState> locationinsert( @Field("PhoneNumber") String PhoneNumber,@Field("Email") String Email,@Field("City") String City,@Field("Street") String Street,@Field("Country") String Country,@Field("Zip") String Zip,@Field("Time") String Time);
-
+    //inserting data in local host server
 
 
     @FormUrlEncoded

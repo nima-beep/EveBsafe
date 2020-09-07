@@ -141,11 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             shakeEventDetector.setOnShakeEventListener(new ShakeEventDetector.OnShakeListener() {
                 @Override
                 public void OnShake(int count) {
-                    if (isGPSEnabled()){
-                        tracker=new GPS_TRACKER(MainActivity.this);
-                        getCompleteAddress(tracker.getLat(),tracker.getLongt());
-
-                    }
+                  startService(intent);
                 }
             });
 
@@ -701,58 +697,7 @@ public void locationDetails()
 
     }
 
-    public void getCompleteAddress(double latitude,double longtitude)
-    {
-        try{
-            Geocoder geocoder=new Geocoder(this, Locale.getDefault());
-            List<android.location.Address> addresses=geocoder.getFromLocation(latitude,longtitude,1);
-            String  street=addresses.get(0).getAddressLine(0);
-            String city=addresses.get(0).getLocality();
-            String zip=addresses.get(0).getPostalCode();
-            String country=addresses.get(0).getCountryName();
 
-            if (pLat!=latitude |pLongt!=longtitude)
-
-            {
-                networkCall(preference.getPhone(),preference.getEmail(),city,street,country,zip);
-                for (int i=0;i<numbers.size();i++)
-                {
-                    smsManager.sendTextMessage(numbers.get(i),null,preference.getMessage()+" "+street+" "+city+" "+zip+" "+country,null,null);
-
-                }
-                pLongt=longtitude;
-                pLat=latitude;
-
-
-            }
-
-        }catch (Exception e)
-        {
-
-        }
-
-    }
-
-    public void networkCall(String phonenumber,String email,String city,String street,String country,String zip)
-    {
-        date=new Date();
-        simpleDateFormat=new SimpleDateFormat("dd-MMMM-yy hh:mm aa");
-        String time= simpleDateFormat.format(date);
-
-        ApiService apiService= ApiClient.getClient().create(ApiService.class);
-        Call<LocationState> call=apiService.locationinsert(phonenumber,email,city,street,country,zip,time);
-        call.enqueue(new Callback<LocationState>() {
-            @Override
-            public void onResponse(Call<LocationState> call, Response<LocationState> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<LocationState> call, Throwable t) {
-
-            }
-        });
-    }
 }
 
 

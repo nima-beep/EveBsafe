@@ -40,8 +40,8 @@ public class LocationDetails extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view=inflater.inflate(R.layout.showlocation,container,false);
-        listView=view.findViewById(R.id.showlocatinlistview);
-        ApiService apiService= ApiClient.getClient().create(ApiService.class);
+        listView=view.findViewById(R.id.showlocatinlistview);//
+        ApiService apiService= ApiClient.getClient().create(ApiService.class);//network calling for fetching data from server
      Call<List<LocationResponse>>call=apiService.locationget(preference.getPhone(),preference.getEmail());
      call.enqueue(new Callback<List<LocationResponse>>() {
          @Override
