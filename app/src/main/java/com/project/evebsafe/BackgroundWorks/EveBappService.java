@@ -69,7 +69,7 @@ public class EveBappService extends Service {
         numbers=userInfo.allNumber();
         smsManager=SmsManager.getDefault();
 
-       init();
+       //init();
         locationManager=(LocationManager)getSystemService(LOCATION_SERVICE);
         preference=new SharedPreference(this);
         sec=preference.getSecond()*1000;
@@ -82,31 +82,23 @@ public class EveBappService extends Service {
             @Override
             public void run() {
 
-               handler.postDelayed(this,20000);
+               handler.postDelayed(this,totaltime);
                if(preference.isRunning()){
 
-                   if (isGPSEnabled()){
-                       tracker=new GPS_TRACKER(EveBappService.this);
-                       getCompleteAddress(tracker.getLat(),tracker.getLongt());
-
-                   }else{
-
-                      if(!preference.isShown())
-                      {
-                          alertWindow();
-                      }
-
+                   if (isGPSEnabled()) {
+                       tracker = new GPS_TRACKER(EveBappService.this);
+                       getCompleteAddress(tracker.getLat(), tracker.getLongt());
 
                    }
                }
                 else
                {
                    handler.removeCallbacks(this);
-                   Toast.makeText(EveBappService.this, "Apps  is not Running", Toast.LENGTH_SHORT).show();
+
 
                }
             }
-        }, 20000);
+        }, totaltime);
     }
 
     @Override
@@ -117,7 +109,12 @@ public class EveBappService extends Service {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
     public void getCompleteAddress(double latitude,double longtitude)
+
     {
+
+        date=new Date();
+        simpleDateFormat=new SimpleDateFormat("dd-MMMM-yy hh:mm aa");
+        String time= simpleDateFormat.format(date);
         try{
             Geocoder geocoder=new Geocoder(this, Locale.getDefault());
             List<Address>addresses=geocoder.getFromLocation(latitude,longtitude,1);
@@ -125,21 +122,20 @@ public class EveBappService extends Service {
             String city=addresses.get(0).getLocality();
             String zip=addresses.get(0).getPostalCode();
             String country=addresses.get(0).getCountryName();
+            Toast.makeText(this, "show message", Toast.LENGTH_SHORT).show();
 
-            if (pLat!=latitude |pLongt!=longtitude)
 
-            {
-                networkCall(preference.getPhone(),preference.getEmail(),city,street,country,zip);
+                networkCall(preference.getPhone(),preference.getEmail(),city,street,country,zip,time);
                 for (int i=0;i<numbers.size();i++)
                 {
-                    smsManager.sendTextMessage(numbers.get(i),null,preference.getMessage()+" "+street+" "+city+" "+zip+" "+country,null,null);
+                    smsManager.sendTextMessage(numbers.get(i),null,preference.getMessage()+" "+street+" "+city+" "+zip+" "+time,null,null);
 
                 }
                 pLongt=longtitude;
                 pLat=latitude;
 
 
-            }
+
 
         }catch (Exception e)
         {
@@ -208,11 +204,9 @@ public class EveBappService extends Service {
 
     }
 
-    public void networkCall(String phonenumber,String email,String city,String street,String country,String zip)
+    public void networkCall(String phonenumber,String email,String city,String street,String country,String zip,String time)
     {
-        date=new Date();
-        simpleDateFormat=new SimpleDateFormat("dd-MMMM-yy hh:mm aa");
-       String time= simpleDateFormat.format(date);
+
 
         ApiService apiService= ApiClient.getClient().create(ApiService.class);
         Call<LocationState> call=apiService.locationinsert(phonenumber,email,city,street,country,zip,time);

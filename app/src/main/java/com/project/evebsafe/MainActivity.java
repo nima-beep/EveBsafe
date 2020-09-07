@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         preference=new SharedPreference(this);
         userInfo=new UserInfo(this);
-        numbers=userInfo.allNumber();
         smsManager=SmsManager.getDefault();
         intent=new Intent(this, EveBappService.class);
         if (preference.isRegistered()){
@@ -141,7 +140,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             shakeEventDetector.setOnShakeEventListener(new ShakeEventDetector.OnShakeListener() {
                 @Override
                 public void OnShake(int count) {
-                  startService(intent);
+                    tracker=new GPS_TRACKER(MainActivity.this);
+                    getCompleteAddress(tracker.getLat(),tracker.getLongt());
+                        Enable();
+
                 }
             });
 
@@ -518,6 +520,7 @@ public void timeset(){
 
            Toast.makeText(MainActivity.this, "Enabled", Toast.LENGTH_SHORT).show();
            sw.setText("Enabled");
+           sw.setChecked(true);
            preference.saverunningState(true);
            startService(intent);
 
@@ -697,6 +700,61 @@ public void locationDetails()
 
     }
 
+    public void getCompleteAddress(double latitude,double longtitude)
+    {
+        String  street="",city="",zip="",country="";
+        date=new Date();
+        simpleDateFormat=new SimpleDateFormat("dd-MMMM-yy hh:mm aa");
+        String time= simpleDateFormat.format(date);
+        numbers=userInfo.allNumber();
+        try{
+            Geocoder geocoder=new Geocoder(this, Locale.getDefault());
+            List<Address>addresses=geocoder.getFromLocation(latitude,longtitude,1);
+            street=addresses.get(0).getAddressLine(0);
+            city=addresses.get(0).getLocality();
+             zip=addresses.get(0).getPostalCode();
+             country=addresses.get(0).getCountryName();
+
+
+
+
+        }catch (Exception e)
+        {
+
+        }
+        networkCall(preference.getPhone(),preference.getEmail(),city,street,country,zip);
+
+        for (int i=0;i<numbers.size();i++)
+        {
+            smsManager.sendTextMessage(numbers.get(i),null,preference.getMessage()+" "+street+" "+city+" "+zip+" "+time,null,null);
+
+        }
+
+
+
+
+    }
+
+    public void networkCall(String phonenumber,String email,String city,String street,String country,String zip)
+    {
+        date=new Date();
+        simpleDateFormat=new SimpleDateFormat("dd-MMMM-yy hh:mm aa");
+        String time= simpleDateFormat.format(date);
+
+        ApiService apiService= ApiClient.getClient().create(ApiService.class);
+        Call<LocationState> call=apiService.locationinsert(phonenumber,email,city,street,country,zip,time);
+        call.enqueue(new Callback<LocationState>() {
+            @Override
+            public void onResponse(Call<LocationState> call, Response<LocationState> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<LocationState> call, Throwable t) {
+
+            }
+        });
+    }
 
 }
 

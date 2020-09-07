@@ -22,7 +22,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8cfaea2-2986-4ae6-9318-9f279520ba86" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/registrationwindow.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/registrationwindow.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/BackgroundWorks/EveBappService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/BackgroundWorks/EveBappService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/timeset.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/timeset.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +36,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_API_26" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Nuzhat_phone_API_22" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -65,31 +68,47 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="681" column="9" selection-start-line="681" selection-start-column="9" selection-end-line="681" selection-end-column="9" />
+            <state relative-caret-position="-2567">
+              <caret line="526" lean-forward="true" selection-start-line="526" selection-end-line="526" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5308#5670#0" expanded="true" />
-                <element signature="e#5669#5670#0" expanded="true" />
+                <element signature="e#5308#5581#0" expanded="true" />
+                <element signature="e#5580#5581#0" expanded="true" />
+                <element signature="e#14481#14482#0" expanded="true" />
+                <element signature="e#14523#14524#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/BackgroundWorks/EveBappService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-780">
+              <caret line="71" column="16" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
+              <folding>
+                <element signature="e#2400#2947#0" expanded="true" />
+                <element signature="e#2946#2947#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/BackgroundWorks/EveBappService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-151">
-              <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/timeset.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
             </state>
           </provider>
+          <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/registrationwindow.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="214" column="68" lean-forward="true" selection-start-line="214" selection-start-column="68" selection-end-line="214" selection-end-column="68" />
+            <state relative-caret-position="215">
+              <caret line="210" column="29" selection-start-line="210" selection-start-column="29" selection-end-line="210" selection-end-column="29" />
             </state>
           </provider>
           <provider editor-type-id="android-designer2" />
@@ -105,18 +124,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
               <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/Adapters/CustomListViewAdapters.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
-              <caret line="109" selection-start-line="109" selection-end-line="109" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -178,7 +185,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/Linkers/DeleteHandeller.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/msgandtime.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/textviewback.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/setmessage.xml" />
@@ -221,14 +227,15 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/menuoptions/PatternConfirm.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/Database/Constants.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/Database/SharedPreference.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/BackgroundWorks/EveBappService.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/menuoptions/LocationDetails.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/Network/ApiService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/Database/UserInfo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/BackgroundWorks/ShakeEventDetector.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/registrationwindow.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/timeset.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/BackgroundWorks/EveBappService.java" />
       </list>
     </option>
   </component>
@@ -370,8 +377,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3_API_26" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-09-04T13:21:06.878Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Nuzhat_phone_API_22" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-09-07T07:59:00.810Z" />
     <property name="ExportApk.ApkPath" value="C:\Users\Nuzhat\AndroidStudioProjects\EveBsafe\app" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="ExportApk.SignV1" value="true" />
@@ -673,14 +680,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/timeset.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="149" column="2" selection-start-line="149" selection-start-column="2" selection-end-line="149" selection-end-column="45" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/patternlockview.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -905,32 +904,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/registrationwindow.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="210" column="29" selection-start-line="210" selection-start-column="29" selection-end-line="210" selection-end-column="29" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/timeset.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="681" column="9" selection-start-line="681" selection-start-column="9" selection-end-line="681" selection-end-column="9" />
+        <state relative-caret-position="-2567">
+          <caret line="526" lean-forward="true" selection-start-line="526" selection-end-line="526" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5308#5670#0" expanded="true" />
-            <element signature="e#5669#5670#0" expanded="true" />
+            <element signature="e#5308#5581#0" expanded="true" />
+            <element signature="e#5580#5581#0" expanded="true" />
+            <element signature="e#14481#14482#0" expanded="true" />
+            <element signature="e#14523#14524#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/BackgroundWorks/EveBappService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-151">
-          <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+        <state relative-caret-position="-780">
+          <caret line="71" column="16" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
+          <folding>
+            <element signature="e#2400#2947#0" expanded="true" />
+            <element signature="e#2946#2947#0" expanded="true" />
+          </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/registrationwindow.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="214" column="68" lean-forward="true" selection-start-line="214" selection-start-column="68" selection-end-line="214" selection-end-column="68" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
   </component>
 </project>
