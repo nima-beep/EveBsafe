@@ -24,10 +24,11 @@ public class LocationListViewAdapter extends BaseAdapter {
     View view;
     List<LocationResponse> locationResponse;
     TextView street, city, country, zip, time;
-
+    int size;
     public LocationListViewAdapter(Context context, List<LocationResponse> locationResponse) {
         this.context = context;
         this.locationResponse = locationResponse;
+        size=locationResponse.size()-1;
 
     }
 
@@ -41,11 +42,11 @@ public class LocationListViewAdapter extends BaseAdapter {
         country = view.findViewById(R.id.countryId);
         time = view.findViewById(R.id.timeId);
 
-        street.setText("Street:  "+locationResponse.get(position).getStreet());
-        city.setText("City:  "+locationResponse.get(position).getCity());
-        zip.setText("Zip:  "+locationResponse.get(position).getZip());
-        country.setText("Country:  "+locationResponse.get(position).getCountry());
-        time.setText("Time:  "+locationResponse.get(position).getCurrentTime());
+        street.setText("Street:  "+locationResponse.get(size-position).getStreet());
+        city.setText("City:  "+locationResponse.get(size-position).getCity());
+        zip.setText("Zip:  "+locationResponse.get(size-position).getZip());
+        country.setText("Country:  "+locationResponse.get(size-position).getCountry());
+        time.setText("Time:  "+locationResponse.get(size-position).getCurrentTime());
 
 
         return view;

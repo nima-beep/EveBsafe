@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="150dp"
+    android:layout_width="match_parent" android:layout_height="250dp"
     app:cardCornerRadius="10dp"
     >
 
@@ -14,6 +14,9 @@
 
 
         <TextView
+            android:textSize="15sp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:background="@drawable/squareshape"
             android:id="@+id/streetId"
             android:layout_width="0dp"
@@ -33,6 +36,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:textSize="15sp"
             android:background="@drawable/squareshape"
             android:gravity="center"
             android:id="@+id/zipId"
@@ -42,6 +46,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:text="Zip:NW1"
             app:layout_constraintBottom_toTopOf="@+id/timeId"
             app:layout_constraintEnd_toStartOf="@+id/cityId"
@@ -49,6 +55,9 @@
             app:layout_constraintTop_toBottomOf="@+id/streetId" />
 
         <TextView
+            android:paddingLeft="5dp"
+            android:textSize="15sp"
+            android:paddingRight="5dp"
             android:background="@drawable/squareshape"
             android:gravity="center"
             android:id="@+id/cityId"
@@ -68,12 +77,15 @@
             app:layout_constraintVertical_bias="0.51" />
 
         <TextView
+            android:textSize="15sp"
             android:background="@drawable/squareshape"
             android:gravity="center"
             android:id="@+id/countryId"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="4dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -88,11 +100,14 @@
 
         <TextView
             android:background="@drawable/squareshape"
+            android:textSize="15sp"
             android:id="@+id/timeId"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"

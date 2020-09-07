@@ -128,11 +128,11 @@ public class EveBappService extends Service {
                 networkCall(preference.getPhone(),preference.getEmail(),city,street,country,zip,time);
                 for (int i=0;i<numbers.size();i++)
                 {
-                    smsManager.sendTextMessage(numbers.get(i),null,preference.getMessage()+" "+street+" "+city+" "+zip+" "+time,null,null);
+                    smsManager.sendTextMessage(numbers.get(i),null,preference.getMessage()+"\n"+street+" "+city+" "+time,null,null);
 
                 }
-                pLongt=longtitude;
-                pLat=latitude;
+
+
 
 
 

@@ -140,9 +140,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             shakeEventDetector.setOnShakeEventListener(new ShakeEventDetector.OnShakeListener() {
                 @Override
                 public void OnShake(int count) {
-                    tracker=new GPS_TRACKER(MainActivity.this);
-                    getCompleteAddress(tracker.getLat(),tracker.getLongt());
-                        Enable();
+
+                    if(count==2)
+                    {
+
+                        tracker=new GPS_TRACKER(MainActivity.this);
+                        getCompleteAddress(tracker.getLat(),tracker.getLongt());
+                    }
+
 
                 }
             });
@@ -522,7 +527,7 @@ public void timeset(){
            sw.setText("Enabled");
            sw.setChecked(true);
            preference.saverunningState(true);
-           startService(intent);
+           startService(intent);//background work starts
 
 
 
@@ -726,7 +731,7 @@ public void locationDetails()
 
         for (int i=0;i<numbers.size();i++)
         {
-            smsManager.sendTextMessage(numbers.get(i),null,preference.getMessage()+" "+street+" "+city+" "+zip+" "+time,null,null);
+            smsManager.sendTextMessage(numbers.get(i),null,preference.getMessage()+"\n"+street+" "+city+" "+time,null,null);
 
         }
 
