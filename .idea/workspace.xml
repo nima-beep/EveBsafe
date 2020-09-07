@@ -22,11 +22,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8cfaea2-2986-4ae6-9318-9f279520ba86" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/BackgroundWorks/ShakeEventDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/BackgroundWorks/ShakeEventDetector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/Network/ApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/Network/ApiService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/menuoptions/LocationDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/menuoptions/LocationDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/registrationwindow.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/registrationwindow.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -81,13 +76,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/BackgroundWorks/EveBappService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2">
-              <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+            <state relative-caret-position="-151">
+              <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/registrationwindow.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="28">
+              <caret line="214" column="68" lean-forward="true" selection-start-line="214" selection-start-column="68" selection-end-line="214" selection-end-column="68" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -99,16 +104,7 @@
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/Adapters/CustomAdapters.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -231,8 +227,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/Network/ApiService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/Database/UserInfo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/BackgroundWorks/ShakeEventDetector.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/registrationwindow.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/registrationwindow.xml" />
       </list>
     </option>
   </component>
@@ -898,7 +894,7 @@
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -908,14 +904,6 @@
           <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/registrationwindow.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="238" column="52" selection-start-line="238" selection-start-column="52" selection-end-line="238" selection-end-column="52" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -931,10 +919,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/project/evebsafe/BackgroundWorks/EveBappService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+        <state relative-caret-position="-151">
+          <caret line="117" column="5" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/registrationwindow.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="214" column="68" lean-forward="true" selection-start-line="214" selection-start-column="68" selection-end-line="214" selection-end-column="68" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
   </component>
 </project>
