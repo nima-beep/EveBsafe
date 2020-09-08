@@ -122,7 +122,7 @@ public class EveBappService extends Service {
             String city=addresses.get(0).getLocality();
             String zip=addresses.get(0).getPostalCode();
             String country=addresses.get(0).getCountryName();
-            Toast.makeText(this, "show message", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, " message sent", Toast.LENGTH_SHORT).show();
 
 
                 networkCall(preference.getPhone(),preference.getEmail(),city,street,country,zip,time);
